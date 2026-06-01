@@ -2,52 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Synthexia | The Ultimate Discord Experience</title>
+    <!-- Favicon Magic -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23080112%22 stroke=%22%238A2BE2%22 stroke-width=%228%22/><text x=%2250%22 y=%2268%22 font-family=%22Orbitron, sans-serif%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23d1b3ff%22 text-anchor=%22middle%22>S</text></svg>">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap');
 
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #080112; }
         ::-webkit-scrollbar-thumb { background: #8A2BE2; border-radius: 10px; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #080112;
-            color: #ffffff;
+            background: #080112; color: #ffffff;
             font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
+            overflow-x: hidden; min-height: 100vh;
+            cursor: none; 
         }
 
         /* Fundal Plasma Orbs */
         .orb {
-            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
             animation: float 20s infinite alternate ease-in-out; z-index: 1; pointer-events: none;
         }
-        .orb-1 { width: 400px; height: 400px; background: #8A2BE2; top: -100px; left: -100px; }
-        .orb-2 { width: 500px; height: 500px; background: #4B0082; bottom: -200px; right: -100px; animation-delay: -5s; }
+        .orb-1 { width: 40vw; height: 40vw; background: #8A2BE2; top: -10%; left: -10%; }
+        .orb-2 { width: 50vw; height: 50vw; background: #4B0082; bottom: 10%; right: -10%; animation-delay: -5s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 150px) scale(1.2); }
+            100% { transform: translate(50px, 100px) scale(1.1); }
         }
 
         /* Cursor Custom */
-        .cursor-glow {
-            width: 300px; height: 300px; background: radial-gradient(circle, rgba(138,43,226,0.2) 0%, transparent 70%);
-            border-radius: 50%; position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 9999;
+        @media (pointer: fine) {
+            .cursor-glow {
+                width: 300px; height: 300px; background: radial-gradient(circle, rgba(138,43,226,0.15) 0%, transparent 70%);
+                border-radius: 50%; position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 9999;
+            }
+            .cursor-dot {
+                width: 6px; height: 6px; background: #fff; box-shadow: 0 0 15px #8A2BE2; border-radius: 50%;
+                position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 10000;
+            }
         }
-        .cursor-dot {
-            width: 6px; height: 6px; background: #fff; box-shadow: 0 0 15px #8A2BE2; border-radius: 50%;
-            position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 10000;
+        @media (pointer: coarse) {
+            body { cursor: auto; }
+            .cursor-glow, .cursor-dot { display: none !important; }
         }
 
         /* Particule Fulgi */
         #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
-        .snowflake { position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.6; pointer-events: none; animation: fall linear infinite; }
+        .snowflake { position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.5; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall {
             0% { transform: translateY(-100px) scale(1); opacity: 0; }
             20% { opacity: 0.6; }
@@ -57,95 +65,129 @@
 
         /* Navigare */
         nav {
-            position: fixed; top: 0; width: 100%; background: rgba(8, 1, 18, 0.5); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2); z-index: 100; padding: 20px 50px;
-            display: flex; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; width: 100%; background: rgba(8, 1, 18, 0.75); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3); z-index: 100; padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
         }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; text-decoration: none; }
-        .nav-links { display: flex; gap: 40px; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
         .nav-links a {
-            color: #b388ff; text-decoration: none; font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 2px; transition: 0.3s; position: relative;
+            color: #b388ff; text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; transition: 0.3s; position: relative;
         }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: #8A2BE2; bottom: -5px; left: 0; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px #8A2BE2; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; box-shadow: 0 0 10px #8A2BE2; }
 
         /* Container Principal */
-        main {
-            position: relative; z-index: 10; padding-top: 150px; display: flex; flex-direction: column; align-items: center; text-align: center;
-        }
+        main { position: relative; z-index: 10; padding-top: 120px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
 
         .glitch-title {
-            font-family: 'Orbitron', sans-serif; font-size: 6.5rem; font-weight: 900; text-transform: uppercase;
-            color: #fff; text-shadow: 0 0 20px #8A2BE2, 0 0 50px #9932CC; margin-bottom: 5px;
-            animation: pulseTitle 3s infinite alternate;
+            font-family: 'Orbitron', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 900; text-transform: uppercase;
+            color: #fff; text-shadow: 0 0 20px #8A2BE2, 0 0 50px #9932CC; margin-bottom: 10px; line-height: 1.1;
+            padding: 0 10px; animation: pulseTitle 3s infinite alternate;
         }
-        @keyframes pulseTitle {
-            0% { text-shadow: 0 0 15px #8A2BE2; }
-            100% { text-shadow: 0 0 30px #b05cff, 0 0 70px #8A2BE2; }
-        }
+        @keyframes pulseTitle { 0% { text-shadow: 0 0 15px #8A2BE2; } 100% { text-shadow: 0 0 30px #b05cff, 0 0 70px #8A2BE2; } }
 
         .typewriter-container {
-            font-size: 1.8rem; color: #B19CD9; letter-spacing: 4px; font-family: 'Orbitron', sans-serif;
-            margin-bottom: 50px; min-height: 40px;
+            font-size: clamp(1.2rem, 3vw, 1.8rem); color: #B19CD9; letter-spacing: 3px; font-family: 'Orbitron', sans-serif;
+            margin-bottom: 40px; min-height: 40px; padding: 0 15px;
         }
         .cursor-blink { animation: blink 1s infinite; color: #fff; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Buton Suprem */
         .invite-btn {
-            display: inline-block; padding: 20px 50px; background: rgba(138, 43, 226, 0.1);
+            display: inline-block; padding: 15px 40px; background: rgba(138, 43, 226, 0.1);
             border: 1px solid #8A2BE2; border-radius: 5px; color: #fff; font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem; font-weight: 700; text-transform: uppercase; text-decoration: none;
-            letter-spacing: 3px; position: relative; overflow: hidden; transition: 0.5s;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3), inset 0 0 20px rgba(138, 43, 226, 0.1);
+            font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 700; text-transform: uppercase; text-decoration: none;
+            letter-spacing: 2px; position: relative; overflow: hidden; transition: 0.5s;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); margin-bottom: 60px;
         }
-        .invite-btn::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); transition: 0.5s;
-        }
-        .invite-btn:hover { background: #8A2BE2; box-shadow: 0 0 40px #8A2BE2, 0 0 80px #4B0082; transform: scale(1.05); }
-        .invite-btn:hover::before { left: 100%; }
+        .invite-btn:hover { background: #8A2BE2; box-shadow: 0 0 40px #8A2BE2; transform: scale(1.05); }
 
-        /* Layout pentru Terminal & Stats */
+        /* Dashboard & Stats Grid */
         .dashboard-grid {
-            display: flex; gap: 50px; margin-top: 80px; align-items: center; justify-content: center;
-            flex-wrap: wrap; max-width: 1200px; padding: 0 20px; padding-bottom: 100px;
+            display: flex; gap: 40px; align-items: center; justify-content: center;
+            flex-wrap: wrap; width: 100%; max-width: 1200px; padding: 0 5%; margin-bottom: 80px;
         }
 
-        /* Contoare Live */
-        .stats-container { display: flex; flex-direction: column; gap: 30px; }
+        .stats-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 350px; }
         .stat-box {
             background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(10px); border-left: 4px solid #8A2BE2;
-            padding: 20px 40px; border-radius: 10px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 20px; border-radius: 10px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .stat-number { font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px #8A2BE2; }
-        .stat-label { font-size: 1.2rem; color: #b388ff; text-transform: uppercase; letter-spacing: 2px; }
+        .stat-number { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px #8A2BE2; }
+        .stat-label { font-size: 1rem; color: #b388ff; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Terminal 3D Holografic */
-        .terminal-wrapper { perspective: 1000px; }
+        /* Terminal 3D */
+        .terminal-wrapper { perspective: 1000px; width: 100%; max-width: 500px; }
         .terminal {
-            background: rgba(5, 1, 10, 0.8); border: 1px solid rgba(138, 43, 226, 0.4);
-            border-radius: 10px; width: 500px; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(138, 43, 226, 0.2);
+            background: rgba(5, 1, 10, 0.85); border: 1px solid rgba(138, 43, 226, 0.4);
+            border-radius: 10px; width: 100%; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             font-family: 'Fira Code', monospace; text-align: left; transform-style: preserve-3d; transition: transform 0.1s ease-out;
         }
         .terminal-header { display: flex; gap: 8px; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding-bottom: 10px; margin-bottom: 15px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot-red { background: #ff5f56; } .dot-yel { background: #ffbd2e; } .dot-grn { background: #27c93f; }
-        
-        .term-line { margin-bottom: 10px; font-size: 1.1rem; line-height: 1.5; color: #a5a5a5; }
+        .term-line { margin-bottom: 10px; font-size: clamp(0.85rem, 2vw, 1rem); line-height: 1.5; color: #a5a5a5; word-wrap: break-word; }
         .term-user { color: #b05cff; font-weight: bold; }
         .term-cmd { color: #fff; }
-        .term-output { color: #27c93f; } /* Verde pentru succes */
+        .term-output { color: #27c93f; }
         .term-system { color: #8A2BE2; font-style: italic; }
 
+        /* Secțiunea Comenzi */
+        .commands-section { width: 100%; max-width: 1200px; padding: 0 5%; margin-bottom: 100px; text-align: left; }
+        .commands-title {
+            font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff;
+            text-shadow: 0 0 15px #8A2BE2; margin-bottom: 30px; border-bottom: 2px solid rgba(138, 43, 226, 0.3); padding-bottom: 10px;
+        }
+        .cmd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .cmd-card {
+            background: rgba(20, 5, 35, 0.5); backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.2); border-radius: 10px; padding: 20px; transition: 0.3s;
+        }
+        .cmd-card:hover { border-color: #b05cff; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2); }
+        .cmd-name { font-family: 'Fira Code', monospace; font-size: 1.2rem; color: #fff; background: rgba(138, 43, 226, 0.3); padding: 5px 10px; border-radius: 5px; display: inline-block; margin-bottom: 10px; }
+        .cmd-desc { font-size: 1.1rem; color: #d1b3ff; line-height: 1.5; }
+
+        /* Butonul Discord Plutitor */
+        .discord-floating-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+            background: rgba(138, 43, 226, 0.2); backdrop-filter: blur(10px);
+            border: 2px solid #8A2BE2; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            z-index: 1000; box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            transition: all 0.4s ease; animation: discordPulse 2s infinite; text-decoration: none;
+        }
+        .discord-floating-btn svg { width: 35px; height: 35px; fill: #ffffff; transition: all 0.4s ease; }
+        
+        .discord-floating-btn:hover {
+            background: #8A2BE2; transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 0 30px #8A2BE2, 0 0 60px #9932CC; animation: none;
+        }
+        .discord-floating-btn:hover svg { transform: scale(1.1) rotate(-8deg); }
+
+        @keyframes discordPulse {
+            0% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 0 30px rgba(138, 43, 226, 0.8); transform: scale(1.05); }
+            100% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.4); transform: scale(1); }
+        }
+
+        /* Media Queries pentru Telefoane */
+        @media (max-width: 768px) {
+            nav { justify-content: center; flex-direction: column; gap: 15px; padding: 15px; }
+            .nav-links { justify-content: center; }
+            main { padding-top: 150px; }
+            .terminal { padding: 15px; }
+            
+            /* Ajustare Buton Discord pe Mobil */
+            .discord-floating-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+            .discord-floating-btn svg { width: 28px; height: 28px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+    
     <div class="cursor-glow" id="cursor-glow"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
     <div id="particle-container"></div>
@@ -154,7 +196,8 @@
         <a href="index.html" class="logo">SYNTHEXIA</a>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
-            <a href="about.html">About Engine</a>
+            <a href="#commands">Commands</a>
+            <a href="about.html">About</a>
             <a href="tos.html">T.O.S</a>
         </div>
     </nav>
@@ -168,23 +211,23 @@
         <a href="https://discord.com/oauth2/authorize?client_id=1511004880469491813&permissions=2270491914266864&integration_type=0&scope=bot+applications.commands" target="_blank" class="invite-btn">Initialize Connection</a>
 
         <div class="dashboard-grid">
-            <!-- Terminal 3D -->
             <div class="terminal-wrapper">
                 <div class="terminal" id="tilt-terminal">
                     <div class="terminal-header">
                         <div class="dot dot-red"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div>
                     </div>
                     <div class="term-line">
-                        <span class="term-system">[System]:</span> Establishing secure connection... OK.
+                        <span class="term-system">[System]:</span> Core Variables Active: English.
                     </div>
                     <div class="term-line">
-                        <span class="term-system">[System]:</span> Loading immaculate UI. Zero formatting clutter detected.
+                        <span class="term-system">[System]:</span> UI Formatting: Clean.
                     </div>
                     <div class="term-line">
                         <span class="term-user">User@Discord:~$</span> <span class="term-cmd">!bal</span>
                     </div>
                     <div class="term-line" style="border-left: 2px solid #8A2BE2; padding-left: 10px;">
-                        <span class="term-output">💳 Wallet: $5,400,000 | 🏦 Bank: $12,000,000 | 🔒 BankLocked: Active</span>
+                        <span class="term-output">💳 Wallet: $5,400,000 | 🏦 Bank: $12,000,000</span><br>
+                        <span class="term-output">🔒 BankLocked: Active</span>
                     </div>
                     <div class="term-line">
                         <span class="term-user">User@Discord:~$</span> <span class="term-cmd blink-cmd">_</span>
@@ -192,7 +235,6 @@
                 </div>
             </div>
 
-            <!-- Contoare Live -->
             <div class="stats-container">
                 <div class="stat-box">
                     <div class="stat-number" data-target="100">0</div>
@@ -202,26 +244,55 @@
                     <div class="stat-number" data-target="9999">0</div>
                     <div class="stat-label">Currency Routed</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number" data-target="0">1</div>
-                    <div class="stat-label">External APIs Used</div>
-                </div>
             </div>
         </div>
+
+        <section id="commands" class="commands-section">
+            <h2 class="commands-title">System Commands</h2>
+            <div class="cmd-grid">
+                <div class="cmd-card">
+                    <div class="cmd-name">!bal</div>
+                    <p class="cmd-desc">Verifică averea ta totală instantaneu. Afișare curată, fără erori vizuale.</p>
+                </div>
+                <div class="cmd-card">
+                    <div class="cmd-name">!pay &lt;user&gt; &lt;amount&gt;</div>
+                    <p class="cmd-desc">Transferă valută securizat, cu procesare automată a ratei de impozitare.</p>
+                </div>
+                <div class="cmd-card">
+                    <div class="cmd-name">!market-crash</div>
+                    <p class="cmd-desc">Eveniment administrativ de modificare globală a economiei.</p>
+                </div>
+                <div class="cmd-card">
+                    <div class="cmd-name">!sys-status</div>
+                    <p class="cmd-desc">Verifică funcționalitatea serverului și starea sistemelor de protecție.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <script>
-        // 1. Cursor Custom
-        const cursorGlow = document.getElementById('cursor-glow');
-        const cursorDot = document.getElementById('cursor-dot');
-        document.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px'; cursorGlow.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
-        });
+    <!-- Buton Discord Plutitor pentru Suport -->
+    <a href="https://discord.gg/C9y9CyFpPG" target="_blank" class="discord-floating-btn" title="Join Support Server">
+        <svg viewBox="0 0 127.14 96.36">
+            <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14c2.64-27.38-4.51-51.11-19.32-72.15ZM42.68,65.27c-5.36,0-9.72-4.86-9.72-10.84s4.28-10.84,9.72-10.84c5.45,0,9.76,4.86,9.72,10.84C52.4,60.41,48.13,65.27,42.68,65.27Zm41.71,0c-5.36,0-9.72-4.86-9.72-10.84s4.28-10.84,9.72-10.84c5.45,0,9.76,4.86,9.72,10.84C89.84,60.41,85.57,65.27,84.39,65.27Z"/>
+        </svg>
+    </a>
 
-        // 2. Efect Fulgi Neon
+    <script>
+        // Cursor Custom
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursorGlow = document.getElementById('cursor-glow');
+            const cursorDot = document.getElementById('cursor-dot');
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px'; cursorGlow.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Efect Fulgi
         const container = document.getElementById('particle-container');
-        for (let i = 0; i < 60; i++) {
+        const particleCount = window.innerWidth > 768 ? 50 : 25; 
+        for (let i = 0; i < particleCount; i++) {
             let sf = document.createElement('div'); sf.classList.add('snowflake');
             sf.style.width = sf.style.height = (Math.random() * 4 + 1) + 'px';
             sf.style.left = Math.random() * 100 + 'vw';
@@ -230,36 +301,32 @@
             container.appendChild(sf);
         }
 
-        // 3. Typewriter Effect
-        const phrases = ["Dominate the Market.", "Forge Your Clan.", "Immaculate Output.", "The Absolute Pinnacle."];
-        let i = 0, j = 0, isDeleting = false, isEnd = false;
+        // Typewriter Effect
+        const phrases = ["Dominate the Market.", "Build Your Empire.", "Immaculate Output.", "The Absolute Pinnacle."];
+        let i = 0, j = 0, isDeleting = false;
         const textTarget = document.getElementById("typewriter-text");
 
         function loop() {
-            isEnd = false;
             textTarget.innerHTML = phrases[i].substring(0, j);
             if (!isDeleting && j < phrases[i].length) {
-                j++; setTimeout(loop, 80);
+                j++; setTimeout(loop, Math.random() * 50 + 50);
             } else if (isDeleting && j > 0) {
-                j--; setTimeout(loop, 40);
-            } else if (j == phrases[i].length) {
-                isEnd = true; isDeleting = true; setTimeout(loop, 2000);
-            } else if (j == 0) {
+                j--; setTimeout(loop, Math.random() * 30 + 30);
+            } else if (j === phrases[i].length) {
+                isDeleting = true; setTimeout(loop, 2000);
+            } else if (j === 0) {
                 isDeleting = false; i = (i + 1) % phrases.length; setTimeout(loop, 500);
             }
         }
         loop();
 
-        // 4. Live Stats Counter
+        // Live Stats
         const counters = document.querySelectorAll('.stat-number');
         counters.forEach(counter => {
             const updateCount = () => {
                 const target = +counter.getAttribute('data-target');
                 const count = +counter.innerText;
-                const speed = target === 0 ? 1 : target / 50; // Speed of counting
-
-                if (target === 0) { counter.innerText = "0"; return; } // Hardcode la zero pt APIs
-
+                const speed = target / 50; 
                 if (count < target) {
                     counter.innerText = Math.ceil(count + speed);
                     setTimeout(updateCount, 40);
@@ -270,13 +337,15 @@
             updateCount();
         });
 
-        // 5. 3D Tilt Effect pentru Terminal
-        const terminal = document.getElementById('tilt-terminal');
-        document.addEventListener('mousemove', (e) => {
-            let xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-            let yAxis = (window.innerHeight / 2 - e.pageY) / 40;
-            terminal.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
+        // 3D Tilt Terminal
+        if (window.matchMedia("(min-width: 768px)").matches) {
+            const terminal = document.getElementById('tilt-terminal');
+            document.addEventListener('mousemove', (e) => {
+                let xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                let yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                terminal.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+        }
     </script>
 </body>
 </html>
