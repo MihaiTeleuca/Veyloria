@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthexia | Terms of Service</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap');
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #080112; }
+        ::-webkit-scrollbar-thumb { background: #8A2BE2; border-radius: 10px; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+        body {
+            background: #080112;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Fundal Plasma Orbs */
+        .orb {
+            position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.25;
+            animation: float 20s infinite alternate ease-in-out; z-index: 1; pointer-events: none;
+        }
+        .orb-1 { width: 400px; height: 400px; background: #8A2BE2; top: 10%; left: -100px; }
+        .orb-2 { width: 500px; height: 500px; background: #4B0082; bottom: 10%; right: -150px; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 150px) scale(1.2); }
+        }
+
+        /* Cursor Custom */
+        .cursor-glow {
+            width: 300px; height: 300px; background: radial-gradient(circle, rgba(138,43,226,0.15) 0%, transparent 70%);
+            border-radius: 50%; position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 9999;
+        }
+        .cursor-dot {
+            width: 6px; height: 6px; background: #fff; box-shadow: 0 0 15px #8A2BE2; border-radius: 50%;
+            position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 10000;
+        }
+
+        /* Particule Fulgi */
+        #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+        .snowflake { position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.5; pointer-events: none; animation: fall linear infinite; }
+        @keyframes fall {
+            0% { transform: translateY(-100px) scale(1); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(100vh) scale(0.3); opacity: 0; }
+        }
+
+        /* Navigare */
+        nav {
+            position: fixed; top: 0; width: 100%; background: rgba(8, 1, 18, 0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3); z-index: 100; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            color: #b388ff; text-decoration: none; font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; transition: 0.3s; position: relative;
+        }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: #8A2BE2; bottom: -5px; left: 0; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px #8A2BE2; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; box-shadow: 0 0 10px #8A2BE2; }
+
+        /* Container Principal */
+        main {
+            position: relative; z-index: 10; padding-top: 150px; padding-bottom: 100px;
+            display: flex; flex-direction: column; align-items: center; max-width: 900px; margin: 0 auto;
+        }
+
+        .header-section { text-align: center; margin-bottom: 60px; }
+        .glitch-title {
+            font-family: 'Orbitron', sans-serif; font-size: 4.5rem; font-weight: 900; text-transform: uppercase;
+            color: #fff; text-shadow: 0 0 15px #8A2BE2, 0 0 40px #9932CC; margin-bottom: 10px;
+            animation: pulseTitle 3s infinite alternate;
+        }
+        @keyframes pulseTitle {
+            0% { text-shadow: 0 0 15px #8A2BE2; }
+            100% { text-shadow: 0 0 30px #b05cff, 0 0 60px #8A2BE2; }
+        }
+        .subtitle { font-size: 1.4rem; color: #B19CD9; letter-spacing: 3px; text-transform: uppercase; font-family: 'Orbitron', sans-serif; }
+        .last-updated { margin-top: 15px; font-size: 1.1rem; color: #8A2BE2; font-weight: bold; }
+
+        /* Termeni - Secțiuni cu Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .tos-section {
+            background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(15px);
+            border: 1px solid rgba(138, 43, 226, 0.2); border-left: 4px solid #8A2BE2;
+            border-radius: 10px; padding: 40px; margin-bottom: 30px; width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s;
+        }
+        .tos-section:hover { border-color: #b05cff; box-shadow: 0 0 20px rgba(138, 43, 226, 0.2); transform: translateX(5px); }
+
+        .tos-section h2 {
+            font-family: 'Orbitron', sans-serif; color: #fff; font-size: 1.8rem; margin-bottom: 20px;
+            display: flex; align-items: center; text-shadow: 0 0 10px #8A2BE2;
+        }
+        .tos-section h2 span {
+            background: rgba(138, 43, 226, 0.2); border: 1px solid #8A2BE2; color: #fff;
+            border-radius: 5px; width: 45px; height: 45px; display: inline-flex;
+            justify-content: center; align-items: center; margin-right: 15px; font-size: 1.2rem;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.4);
+        }
+
+        .tos-section p { font-size: 1.2rem; line-height: 1.8; color: #d1b3ff; margin-bottom: 15px; }
+        .tos-list { list-style: none; margin-top: 15px; }
+        .tos-list li { font-size: 1.15rem; line-height: 1.7; color: #e0ccff; margin-bottom: 10px; padding-left: 30px; position: relative; }
+        .tos-list li::before { content: '◈'; position: absolute; left: 0; top: 0; color: #8A2BE2; text-shadow: 0 0 5px #8A2BE2; font-size: 1.2rem; }
+
+        .highlight { color: #fff; font-weight: bold; text-shadow: 0 0 5px #8A2BE2; }
+
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div id="particle-container"></div>
+
+    <nav>
+        <a href="index.html" class="logo">SYNTHEXIA</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Engine</a>
+            <a href="tos.html" class="active">T.O.S</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="header-section reveal active">
+            <h1 class="glitch-title">IMPERIAL EDICTS</h1>
+            <p class="subtitle">Terms of Service & Rules</p>
+            <p class="last-updated">Last Enforced: June 2026</p>
+        </div>
+
+        <div class="tos-section reveal">
+            <h2><span>01</span> Acceptance of Terms</h2>
+            <p>By inviting the <span class="highlight">Synthexia</span> bot to your Discord Server (Guild) or interacting with its native commands (e.g., `!bal`, `!pay`), you fully acknowledge and agree to these Terms of Service. If you do not accept these edicts, you must immediately cease usage and expel the application from your server.</p>
+        </div>
+
+        <div class="tos-section reveal">
+            <h2><span>02</span> Digital Assets & Metaverse Value</h2>
+            <p>Synthexia simulates a massive, high-stakes RPG economy. You acknowledge that all in-game assets are entirely fictional.</p>
+            <ul class="tos-list">
+                <li><span class="highlight">No Real-World Value:</span> In-bot Currency, Real Estate (Apartments, Corporations, Castles), and Faction statuses have absolutely zero real-world monetary value.</li>
+                <li><span class="highlight">Asset Liquidation:</span> The Bot Administrators reserve the right to wipe, alter, or reset economies, taxes, and properties at any time to maintain market balance.</li>
+            </ul>
+        </div>
+
+        <div class="tos-section reveal">
+            <h2><span>03</span> User Conduct & Exploitation</h2>
+            <p>The Synthexia architecture is built on flawless, 100% native logic without the use of external APIs. Users are expected to interact with the bot as intended.</p>
+            <ul class="tos-list">
+                <li>Attempting to exploit command variables, bypass the <span class="highlight">BankLocked</span> security systems, or artificially inflate wealth through macros/automation is strictly forbidden.</li>
+                <li>Offenders will face immediate, permanent blacklisting from the global Synthex Central Bank (SCB), resulting in total asset forfeiture.</li>
+            </ul>
+        </div>
+
+        <div class="tos-section reveal">
+            <h2><span>04</span> Service Availability & Liability</h2>
+            <p>While Synthexia is engineered for supreme stability, the service is provided "as is".</p>
+            <p>We are not liable for temporary downtimes caused by Discord API outages or unexpected data loss. However, our internal ledger ensures that your last 10 transactions and primary <span class="highlight">Currency</span> routings are constantly secured in our native databases.</p>
+        </div>
+
+        <div class="tos-section reveal">
+            <h2><span>05</span> Administrative Supremacy</h2>
+            <p>Server Administrators hold jurisdiction over their specific Guild's economy, but the Global Bot Developers hold absolute supremacy over the overarching network. We reserve the right to revoke bot access from any user or server deemed toxic, abusive, or harmful to the Synthexia ecosystem without prior notice.</p>
+        </div>
+    </main>
+
+    <script>
+        // 1. Cursor Custom
+        const cursorGlow = document.getElementById('cursor-glow');
+        const cursorDot = document.getElementById('cursor-dot');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px'; cursorGlow.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
+        });
+
+        // 2. Efect Fulgi Neon
+        const container = document.getElementById('particle-container');
+        for (let i = 0; i < 50; i++) {
+            let sf = document.createElement('div'); sf.classList.add('snowflake');
+            sf.style.width = sf.style.height = (Math.random() * 4 + 1) + 'px';
+            sf.style.left = Math.random() * 100 + 'vw';
+            sf.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            sf.style.animationDelay = (Math.random() * 10) + 's';
+            container.appendChild(sf);
+        }
+
+        // 3. Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Declanseaza animatia cand elementul e la 100px in vizor
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', reveal);
+        reveal(); // Declansare initiala pentru sectiunile deja pe ecran
+    </script>
+</body>
+</html>
