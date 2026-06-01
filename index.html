@@ -5,58 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Synthexia | The Ultimate Discord Experience</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap');
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #080112; }
-        ::-webkit-scrollbar-thumb { background: #8A2BE2; border-radius: 10px; box-shadow: 0 0 10px #8A2BE2; }
+        ::-webkit-scrollbar-thumb { background: #8A2BE2; border-radius: 10px; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none; /* Cursor Custom */
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
-            background: linear-gradient(-45deg, #0f021a, #1a052e, #080112, #240b3d);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: #080112;
             color: #ffffff;
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            position: relative;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Fundal Plasma Orbs */
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
+            animation: float 20s infinite alternate ease-in-out; z-index: 1; pointer-events: none;
+        }
+        .orb-1 { width: 400px; height: 400px; background: #8A2BE2; top: -100px; left: -100px; }
+        .orb-2 { width: 500px; height: 500px; background: #4B0082; bottom: -200px; right: -100px; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 150px) scale(1.2); }
         }
 
-        /* Cursor Custom Interactiv */
+        /* Cursor Custom */
         .cursor-glow {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(138,43,226,0.15) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%; position: fixed; pointer-events: none;
-            transform: translate(-50%, -50%); z-index: 9999; transition: width 0.2s, height 0.2s;
+            width: 300px; height: 300px; background: radial-gradient(circle, rgba(138,43,226,0.2) 0%, transparent 70%);
+            border-radius: 50%; position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 9999;
         }
         .cursor-dot {
-            width: 8px; height: 8px; background: #d1b3ff;
-            box-shadow: 0 0 10px #fff, 0 0 20px #8A2BE2; border-radius: 50%;
+            width: 6px; height: 6px; background: #fff; box-shadow: 0 0 15px #8A2BE2; border-radius: 50%;
             position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 10000;
         }
 
-        /* Particule Neon / Fulgi */
-        #particle-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
-        }
-        .snowflake {
-            position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.6; pointer-events: none; animation: fall linear infinite;
-        }
+        /* Particule Fulgi */
+        #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+        .snowflake { position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.6; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall {
             0% { transform: translateY(-100px) scale(1); opacity: 0; }
             20% { opacity: 0.6; }
@@ -64,132 +55,163 @@
             100% { transform: translateY(100vh) scale(0.3); opacity: 0; }
         }
 
-        /* Navigation Bar (Glassmorphism) */
+        /* Navigare */
         nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(10, 2, 20, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-            z-index: 100; padding: 20px 50px;
+            position: fixed; top: 0; width: 100%; background: rgba(8, 1, 18, 0.5); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2); z-index: 100; padding: 20px 50px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        
-        .logo {
-            font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700;
-            color: #fff; text-shadow: 0 0 10px #8A2BE2; text-decoration: none;
-        }
-
-        .nav-links { display: flex; gap: 30px; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; }
         .nav-links a {
-            color: #d1b3ff; text-decoration: none; font-size: 1.2rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
-            position: relative;
+            color: #b388ff; text-decoration: none; font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; transition: 0.3s; position: relative;
         }
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 2px;
-            background: #8A2BE2; bottom: -5px; left: 0; transition: 0.3s;
-        }
-        .nav-links a:hover { color: #fff; text-shadow: 0 0 10px #8A2BE2; }
-        .nav-links a:hover::after { width: 100%; box-shadow: 0 0 10px #8A2BE2; }
-        .nav-links a.active { color: #fff; text-shadow: 0 0 10px #8A2BE2; }
-        .nav-links a.active::after { width: 100%; box-shadow: 0 0 10px #8A2BE2; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: #8A2BE2; bottom: -5px; left: 0; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px #8A2BE2; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; box-shadow: 0 0 10px #8A2BE2; }
 
-        /* Hero Section (Centrat pe tot ecranul) */
-        .hero {
-            flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            position: relative; z-index: 10; text-align: center; padding: 0 20px;
-            margin-top: 80px; /* Offset for navbar */
+        /* Container Principal */
+        main {
+            position: relative; z-index: 10; padding-top: 150px; display: flex; flex-direction: column; align-items: center; text-align: center;
         }
 
         .glitch-title {
-            font-family: 'Orbitron', sans-serif; font-size: 6rem; font-weight: 900;
-            text-transform: uppercase; color: #fff;
-            text-shadow: 0 0 15px #8A2BE2, 0 0 40px #9932CC;
-            animation: pulseGlow 2s infinite alternate; margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif; font-size: 6.5rem; font-weight: 900; text-transform: uppercase;
+            color: #fff; text-shadow: 0 0 20px #8A2BE2, 0 0 50px #9932CC; margin-bottom: 5px;
+            animation: pulseTitle 3s infinite alternate;
         }
-        @keyframes pulseGlow {
-            0% { text-shadow: 0 0 15px #8A2BE2, 0 0 30px #9932CC; transform: scale(1); }
-            100% { text-shadow: 0 0 25px #b05cff, 0 0 60px #8A2BE2, 0 0 80px #4B0082; transform: scale(1.02); }
-        }
-
-        .hero-subtitle {
-            font-size: 1.8rem; color: #B19CD9; letter-spacing: 5px;
-            margin-bottom: 40px; text-transform: uppercase;
+        @keyframes pulseTitle {
+            0% { text-shadow: 0 0 15px #8A2BE2; }
+            100% { text-shadow: 0 0 30px #b05cff, 0 0 70px #8A2BE2; }
         }
 
-        /* Buton de Invitație Suprem */
+        .typewriter-container {
+            font-size: 1.8rem; color: #B19CD9; letter-spacing: 4px; font-family: 'Orbitron', sans-serif;
+            margin-bottom: 50px; min-height: 40px;
+        }
+        .cursor-blink { animation: blink 1s infinite; color: #fff; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Buton Suprem */
         .invite-btn {
-            display: inline-block; padding: 18px 45px;
-            background: transparent; border: 2px solid #8A2BE2; border-radius: 50px;
-            color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700;
-            text-transform: uppercase; text-decoration: none; letter-spacing: 2px;
-            position: relative; overflow: hidden; transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            display: inline-block; padding: 20px 50px; background: rgba(138, 43, 226, 0.1);
+            border: 1px solid #8A2BE2; border-radius: 5px; color: #fff; font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem; font-weight: 700; text-transform: uppercase; text-decoration: none;
+            letter-spacing: 3px; position: relative; overflow: hidden; transition: 0.5s;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3), inset 0 0 20px rgba(138, 43, 226, 0.1);
         }
-        
         .invite-btn::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.5), transparent);
-            transition: all 0.5s ease; z-index: -1;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); transition: 0.5s;
         }
-
-        .invite-btn:hover {
-            background: #8A2BE2; box-shadow: 0 0 40px #8A2BE2, 0 0 80px #9932CC; transform: translateY(-5px);
-        }
+        .invite-btn:hover { background: #8A2BE2; box-shadow: 0 0 40px #8A2BE2, 0 0 80px #4B0082; transform: scale(1.05); }
         .invite-btn:hover::before { left: 100%; }
 
-        /* Quick Features */
-        .quick-features {
-            display: flex; gap: 40px; margin-top: 80px; justify-content: center; flex-wrap: wrap;
+        /* Layout pentru Terminal & Stats */
+        .dashboard-grid {
+            display: flex; gap: 50px; margin-top: 80px; align-items: center; justify-content: center;
+            flex-wrap: wrap; max-width: 1200px; padding: 0 20px; padding-bottom: 100px;
         }
-        .feature-badge {
-            background: rgba(20, 5, 35, 0.6); backdrop-filter: blur(10px);
-            border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 15px;
-            padding: 15px 30px; font-size: 1.1rem; color: #e0ccff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s;
+
+        /* Contoare Live */
+        .stats-container { display: flex; flex-direction: column; gap: 30px; }
+        .stat-box {
+            background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(10px); border-left: 4px solid #8A2BE2;
+            padding: 20px 40px; border-radius: 10px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .feature-badge:hover {
-            border-color: #8A2BE2; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+        .stat-number { font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px #8A2BE2; }
+        .stat-label { font-size: 1.2rem; color: #b388ff; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Terminal 3D Holografic */
+        .terminal-wrapper { perspective: 1000px; }
+        .terminal {
+            background: rgba(5, 1, 10, 0.8); border: 1px solid rgba(138, 43, 226, 0.4);
+            border-radius: 10px; width: 500px; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(138, 43, 226, 0.2);
+            font-family: 'Fira Code', monospace; text-align: left; transform-style: preserve-3d; transition: transform 0.1s ease-out;
         }
-        .feature-badge strong { color: #fff; font-family: 'Orbitron', sans-serif; }
+        .terminal-header { display: flex; gap: 8px; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding-bottom: 10px; margin-bottom: 15px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: #ff5f56; } .dot-yel { background: #ffbd2e; } .dot-grn { background: #27c93f; }
+        
+        .term-line { margin-bottom: 10px; font-size: 1.1rem; line-height: 1.5; color: #a5a5a5; }
+        .term-user { color: #b05cff; font-weight: bold; }
+        .term-cmd { color: #fff; }
+        .term-output { color: #27c93f; } /* Verde pentru succes */
+        .term-system { color: #8A2BE2; font-style: italic; }
 
     </style>
 </head>
 <body>
 
-    <!-- Elemente Cursor Custom -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
     <div class="cursor-glow" id="cursor-glow"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
-
-    <!-- Container Fulgi -->
     <div id="particle-container"></div>
 
-    <!-- Meniul de Navigare (Conectează paginile) -->
     <nav>
         <a href="index.html" class="logo">SYNTHEXIA</a>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
+            <a href="about.html">About Engine</a>
             <a href="tos.html">T.O.S</a>
         </div>
     </nav>
 
-    <!-- Sectiunea Principala -->
-    <main class="hero">
+    <main>
         <h1 class="glitch-title">SYNTHEXIA</h1>
-        <p class="hero-subtitle">The Absolute Pinnacle of Discord Economy</p>
+        <div class="typewriter-container">
+            <span id="typewriter-text"></span><span class="cursor-blink">_</span>
+        </div>
         
-        <!-- Aici vei pune link-ul real de la botul tau (OAuth2 din Discord Developer Portal) -->
-        <a href="#" class="invite-btn">Invite To Server</a>
+        <a href="#" class="invite-btn">Initialize Connection</a>
 
-        <div class="quick-features">
-            <div class="feature-badge"><strong>100% Native</strong> Architecture</div>
-            <div class="feature-badge"><strong>BankLocked</strong> Protocol</div>
-            <div class="feature-badge"><strong>Immaculate</strong> Interface Output</div>
+        <div class="dashboard-grid">
+            <!-- Terminal 3D -->
+            <div class="terminal-wrapper">
+                <div class="terminal" id="tilt-terminal">
+                    <div class="terminal-header">
+                        <div class="dot dot-red"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div>
+                    </div>
+                    <div class="term-line">
+                        <span class="term-system">[System]:</span> Establishing secure connection... OK.
+                    </div>
+                    <div class="term-line">
+                        <span class="term-system">[System]:</span> Loading immaculate UI. Zero formatting clutter detected.
+                    </div>
+                    <div class="term-line">
+                        <span class="term-user">User@Discord:~$</span> <span class="term-cmd">!bal</span>
+                    </div>
+                    <div class="term-line" style="border-left: 2px solid #8A2BE2; padding-left: 10px;">
+                        <span class="term-output">💳 Wallet: $5,400,000 | 🏦 Bank: $12,000,000 | 🔒 BankLocked: Active</span>
+                    </div>
+                    <div class="term-line">
+                        <span class="term-user">User@Discord:~$</span> <span class="term-cmd blink-cmd">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoare Live -->
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">% Native Logic</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="9999">0</div>
+                    <div class="stat-label">Currency Routed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="0">1</div>
+                    <div class="stat-label">External APIs Used</div>
+                </div>
+            </div>
         </div>
     </main>
 
     <script>
-        // Cursor Custom
+        // 1. Cursor Custom
         const cursorGlow = document.getElementById('cursor-glow');
         const cursorDot = document.getElementById('cursor-dot');
         document.addEventListener('mousemove', (e) => {
@@ -197,23 +219,64 @@
             cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px';
         });
 
-        // Generare Fulgi (Particule)
-        function createSnowflakes() {
-            const container = document.getElementById('particle-container');
-            const particleCount = 60;
-            for (let i = 0; i < particleCount; i++) {
-                let snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                let size = Math.random() * 4 + 1; 
-                snowflake.style.width = size + 'px'; snowflake.style.height = size + 'px';
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                let duration = Math.random() * 15 + 10; 
-                snowflake.style.animationDuration = duration + 's';
-                snowflake.style.animationDelay = Math.random() * 10 + 's';
-                container.appendChild(snowflake);
+        // 2. Efect Fulgi Neon
+        const container = document.getElementById('particle-container');
+        for (let i = 0; i < 60; i++) {
+            let sf = document.createElement('div'); sf.classList.add('snowflake');
+            sf.style.width = sf.style.height = (Math.random() * 4 + 1) + 'px';
+            sf.style.left = Math.random() * 100 + 'vw';
+            sf.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            sf.style.animationDelay = (Math.random() * 10) + 's';
+            container.appendChild(sf);
+        }
+
+        // 3. Typewriter Effect
+        const phrases = ["Dominate the Market.", "Forge Your Clan.", "Immaculate Output.", "The Absolute Pinnacle."];
+        let i = 0, j = 0, isDeleting = false, isEnd = false;
+        const textTarget = document.getElementById("typewriter-text");
+
+        function loop() {
+            isEnd = false;
+            textTarget.innerHTML = phrases[i].substring(0, j);
+            if (!isDeleting && j < phrases[i].length) {
+                j++; setTimeout(loop, 80);
+            } else if (isDeleting && j > 0) {
+                j--; setTimeout(loop, 40);
+            } else if (j == phrases[i].length) {
+                isEnd = true; isDeleting = true; setTimeout(loop, 2000);
+            } else if (j == 0) {
+                isDeleting = false; i = (i + 1) % phrases.length; setTimeout(loop, 500);
             }
         }
-        window.onload = createSnowflakes;
+        loop();
+
+        // 4. Live Stats Counter
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const speed = target === 0 ? 1 : target / 50; // Speed of counting
+
+                if (target === 0) { counter.innerText = "0"; return; } // Hardcode la zero pt APIs
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + speed);
+                    setTimeout(updateCount, 40);
+                } else {
+                    counter.innerText = target + (target > 100 ? "+" : "%");
+                }
+            };
+            updateCount();
+        });
+
+        // 5. 3D Tilt Effect pentru Terminal
+        const terminal = document.getElementById('tilt-terminal');
+        document.addEventListener('mousemove', (e) => {
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+            let yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+            terminal.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
     </script>
 </body>
 </html>
