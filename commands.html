@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Synthexia | Sector Utilitare</title>
+    <title>Synthexia | Central Mainframe</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23080112%22 stroke=%22%238A2BE2%22 stroke-width=%228%22/><text x=%2250%22 y=%2268%22 font-family=%22Orbitron, sans-serif%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23d1b3ff%22 text-anchor=%22middle%22>S</text></svg>">
     
     <style>
@@ -22,7 +22,7 @@
             overflow-x: hidden; min-height: 100vh; cursor: none; 
         }
 
-        /* Fundal Plasma & Fulgi */
+        /* Plasma Background & Particles */
         .orb { position: fixed; border-radius: 50%; filter: blur(100px); opacity: 0.25; z-index: 1; pointer-events: none; }
         .orb-1 { width: 50vw; height: 50vw; background: #8A2BE2; top: -10%; left: -10%; }
         .orb-2 { width: 60vw; height: 60vw; background: #4B0082; bottom: -10%; right: -10%; }
@@ -30,14 +30,14 @@
         .snowflake { position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.4; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall { 0% { transform: translateY(-10px) scale(1); opacity: 0; } 20% { opacity: 0.5; } 100% { transform: translateY(100vh) scale(0.3); opacity: 0; } }
 
-        /* Cursor Custom - Zero Lag */
+        /* Custom Zero-Lag Cursor */
         @media (pointer: fine) {
             .cursor-glow { width: 300px; height: 300px; background: radial-gradient(circle, rgba(138,43,226,0.12) 0%, transparent 70%); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; will-change: transform; transform: translate(-50%, -50%); }
             .cursor-dot { width: 6px; height: 6px; background: #fff; box-shadow: 0 0 15px #8A2BE2; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000; will-change: transform; transform: translate(-50%, -50%); }
         }
         @media (pointer: coarse) { body { cursor: auto; } .cursor-glow, .cursor-dot { display: none !important; } }
 
-        /* Navigare */
+        /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%; background: rgba(8, 1, 18, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(138, 43, 226, 0.3); z-index: 100; padding: 15px 5%;
@@ -48,63 +48,65 @@
         .nav-links a { color: #b388ff; text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px #8A2BE2; }
 
-        /* Layout Principal Comenzi */
-        main { position: relative; z-index: 10; padding: 120px 5% 50px 5%; max-width: 1400px; margin: 0 auto; }
-        
-        .header-title { text-align: center; margin-bottom: 40px; }
-        .glitch-title { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: #fff; text-shadow: 0 0 20px #8A2BE2; text-transform: uppercase; }
-        .sub-title { font-size: 1.2rem; color: #b388ff; letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; }
+        /* Main Layout */
+        main { position: relative; z-index: 10; padding: 100px 5% 50px 5%; max-width: 1400px; margin: 0 auto; }
 
-        /* Meniu Categorii (Pregătit pentru viitor) */
-        .category-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+        /* Terminal Intro Module */
+        .terminal-intro {
+            background: rgba(10, 2, 20, 0.7); border: 1px solid rgba(138, 43, 226, 0.4);
+            border-radius: 10px; padding: 25px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: 'Fira Code', monospace; position: relative; overflow: hidden;
+        }
+        .terminal-intro::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #8A2BE2; box-shadow: 0 0 15px #8A2BE2; }
+        .term-header { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; text-shadow: 0 0 10px #8A2BE2; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .term-text { color: #a5a5a5; font-size: 1rem; line-height: 1.6; margin-bottom: 10px; }
+        .term-highlight { color: #b05cff; font-weight: bold; }
+        .term-footer { font-size: 0.85rem; color: #555; margin-top: 20px; display: flex; justify-content: space-between; border-top: 1px solid rgba(138,43,226,0.2); padding-top: 10px; }
+        
+        .sys-links { display: flex; gap: 15px; margin-top: 15px; }
+        .sys-links a { color: #27c93f; text-decoration: none; border-bottom: 1px dashed #27c93f; transition: 0.3s; }
+        .sys-links a:hover { color: #fff; border-color: #fff; }
+
+        /* Category Menu */
+        .category-menu { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
         .cat-btn {
-            background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138, 43, 226, 0.3); color: #fff;
-            padding: 10px 25px; border-radius: 5px; font-family: 'Orbitron', sans-serif; font-weight: 700;
-            text-transform: uppercase; cursor: none; transition: 0.3s; letter-spacing: 1px;
+            background: rgba(15, 3, 26, 0.8); border: 1px solid rgba(138, 43, 226, 0.3); color: #b388ff;
+            padding: 12px 20px; border-radius: 8px; font-family: 'Orbitron', sans-serif; font-weight: 700;
+            text-transform: uppercase; cursor: none; transition: all 0.3s ease; letter-spacing: 1px; font-size: 0.9rem;
         }
-        .cat-btn.active { background: rgba(138, 43, 226, 0.4); border-color: #b05cff; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); }
-        .cat-btn.locked { opacity: 0.4; border-color: #555; pointer-events: none; }
+        .cat-btn:hover { background: rgba(138, 43, 226, 0.2); border-color: #b05cff; color: #fff; transform: translateY(-2px); }
+        .cat-btn.active { background: #8A2BE2; border-color: #b05cff; color: #fff; box-shadow: 0 0 20px rgba(138, 43, 226, 0.6); }
 
-        /* Sectiuni Paginare Core */
-        .cmd-section {
-            background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 15px; padding: 30px; margin-bottom: 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-        }
-        
-        /* Header Sectiune cu Iconita Custom */
-        .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; border-bottom: 2px solid rgba(138, 43, 226, 0.3); padding-bottom: 15px; }
-        .section-icon { width: 40px; height: 40px; background: rgba(138, 43, 226, 0.15); border-radius: 10px; display: flex; justify-content: center; align-items: center; border: 1px solid #8A2BE2; box-shadow: 0 0 15px rgba(138,43,226,0.3); }
-        .section-icon svg { width: 24px; height: 24px; stroke: #d1b3ff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-        .section-info h2 { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: #fff; text-shadow: 0 0 10px #8A2BE2; }
-        .section-info p { color: #a5a5a5; font-size: 0.95rem; margin-top: 5px; }
+        /* Command Sections */
+        .cmd-section { display: none; animation: fadeIn 0.5s ease forwards; }
+        .cmd-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Grid Lista Comenzi */
-        .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 15px; }
+        .sector-header { background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(138,43,226,0.2); border-radius: 10px; padding: 20px; margin-bottom: 25px; }
+        .sector-title { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; margin-bottom: 5px; }
+        .sector-desc { color: #a5a5a5; font-size: 1.05rem; }
 
-        /* Row Comanda Individuala */
-        .cmd-row {
-            background: rgba(0, 0, 0, 0.4); border-left: 3px solid #8A2BE2; border-radius: 5px;
-            padding: 15px; display: flex; flex-direction: column; gap: 8px; transition: 0.3s;
-        }
+        /* Command Grid */
+        .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 15px; }
+        .cmd-row { background: rgba(0, 0, 0, 0.5); border-left: 3px solid #8A2BE2; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 10px; transition: 0.3s; }
         .cmd-row:hover { background: rgba(138, 43, 226, 0.1); border-left-color: #b05cff; transform: translateX(5px); }
         
         .cmd-top { display: flex; justify-content: space-between; align-items: center; }
-        .cmd-syntax { font-family: 'Fira Code', monospace; font-size: 1.1rem; color: #fff; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px; }
-        .cmd-syntax span { color: #b388ff; font-size: 0.9rem; } /* Pentru argumente gen [@user] */
+        .cmd-syntax { font-family: 'Fira Code', monospace; font-size: 1.15rem; color: #fff; font-weight: bold; }
+        .cmd-syntax span { color: #b388ff; font-size: 0.95rem; font-weight: normal; }
         
-        /* Badges de Permisiuni */
-        .badge { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px; }
-        .badge.owner { background: rgba(255, 60, 60, 0.15); color: #ff5f56; border: 1px solid #ff5f56; box-shadow: 0 0 10px rgba(255, 60, 60, 0.2); }
-        .badge.admin { background: rgba(255, 189, 46, 0.15); color: #ffbd2e; border: 1px solid #ffbd2e; box-shadow: 0 0 10px rgba(255, 189, 46, 0.2); }
-        .badge.mod { background: rgba(39, 201, 63, 0.15); color: #27c93f; border: 1px solid #27c93f; box-shadow: 0 0 10px rgba(39, 201, 63, 0.2); }
+        /* Badges */
+        .badge { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .badge.owner { background: rgba(255, 60, 60, 0.15); color: #ff5f56; border: 1px solid #ff5f56; }
+        .badge.admin { background: rgba(255, 189, 46, 0.15); color: #ffbd2e; border: 1px solid #ffbd2e; }
+        .badge.mod { background: rgba(39, 201, 63, 0.15); color: #27c93f; border: 1px solid #27c93f; }
         .badge.public { background: rgba(138, 43, 226, 0.15); color: #d1b3ff; border: 1px solid #8A2BE2; }
 
-        .cmd-desc { font-size: 1rem; color: #d1b3ff; line-height: 1.4; }
+        .cmd-desc { font-size: 1.05rem; color: #d1b3ff; line-height: 1.5; }
 
         @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 10px; padding: 15px; }
             .cmd-grid { grid-template-columns: 1fr; }
-            .section-header { flex-direction: column; align-items: flex-start; }
+            .term-footer { flex-direction: column; gap: 10px; }
             .cmd-top { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
     </style>
@@ -127,182 +129,148 @@
     </nav>
 
     <main>
-        <div class="header-title">
-            <h1 class="glitch-title">Data Terminal</h1>
-            <div class="sub-title">Synthex Mainframe | Access Logs</div>
+        <!-- SYSTEM INTRO -->
+        <div class="terminal-intro">
+            <div class="term-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A2BE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                SYNTHEX CENTRAL MAINFRAME
+            </div>
+            <div class="term-text">Good morning, Agent. System reboot successful. Biometric authentication confirmed. Welcome to the ecosystem, <span class="term-highlight">teleucamihai</span>.</div>
+            <div class="term-text">You have established a secure connection to the central neural network. Synthexia offers a complete and immersive digital universe. Select a module from the lower dashboard to download system data.</div>
+            
+            <div class="sys-links">
+                <a href="https://discord.com/oauth2/authorize?client_id=1511320585823588352&permissions=6755657571626102&integration_type=0&scope=bot+applications.commands" target="_blank">[+] Invite Our Bot</a>
+                <a href="https://discord.gg/C9y9CyFpPG" target="_blank">[+] Join Support Server</a>
+            </div>
+
+            <div class="term-footer">
+                <span>Synthexia HQ OS v4.5 • Awaiting User Input...</span>
+                <span>Secure connection established at: 03/June/2026 · 06:55 UTC</span>
+            </div>
         </div>
 
+        <!-- CATEGORY NAVIGATION -->
         <div class="category-menu">
-            <div class="cat-btn active">Utilitare (100)</div>
-            <div class="cat-btn locked">Economie (Soon)</div>
-            <div class="cat-btn locked">Divertisment (Soon)</div>
+            <button class="cat-btn active" onclick="openSector('core')">Core & Utilities</button>
+            <button class="cat-btn" onclick="openSector('civil')">Civil & Economy</button>
+            <button class="cat-btn" onclick="openSector('crypto')">Tech & Crypto</button>
+            <button class="cat-btn" onclick="openSector('warfare')">War & Territories</button>
+            <button class="cat-btn" onclick="openSector('lifestyle')">Lifestyle & Nature</button>
         </div>
 
-        <!-- PAGINA 1: CORE & VIP -->
-        <div class="cmd-section">
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10L12 2z"/><path d="M12 2v20M2 12h20" opacity="0.3"/></svg>
-                </div>
-                <div class="section-info">
-                    <h2>Protocoale Premium & Core (Pagina 1/4)</h2>
-                    <p>Autorizare: Nivel MAX (Core) & Nivel 1 (VIP). Accesul la comenzile CORE este monitorizat strict.</p>
-                </div>
+        <!-- SECTOR 1: CORE & UTILITIES -->
+        <div id="core" class="cmd-section active">
+            <div class="sector-header">
+                <div class="sector-title">Core & Utilities Sector</div>
+                <div class="sector-desc">Analyze vital server diagnostics, configure account parameters, manage your avatar, and utilize advanced tools.</div>
             </div>
-            <div class="cmd-grid">
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">/premium</div><div class="badge public">VIP</div></div><div class="cmd-desc">Vizualizează statusul și beneficiile VIP curente.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">/premium-buy</div><div class="badge public">VIP</div></div><div class="cmd-desc">Accesează portalul securizat de achiziție VIP.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!premium-perks</div><div class="badge public">VIP</div></div><div class="cmd-desc">Lista completă a multiplicatorilor ecosistemului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!give-premium <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Acordă licență VIP permanentă unui cetățean.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!give-trial <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Activează licență VIP temporară (72h).</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!take-premium <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Revocă instantaneu accesul VIP.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!premium-users</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Extrage lista globală a abonaților VIP.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!premium-stats <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Verifică istoricul VIP al unui cetățean.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!promo-code <span>[cod]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Revendică un cod promoțional pentru status VIP.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!promo-create <span>[zile]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Generează un cod promoțional VIP.</div></div>
-                
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-ban <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Blochează accesul utilizatorului la ecosistem.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-unban <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Ridică restricția globală.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-maintenance</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Trece botul în modul de mentenanță.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-broadcast <span>[text]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Trimite mesaj global pe toate serverele.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-eval <span>[cod]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Execută cod brut în consolă.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-reboot</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Forțează repornirea terminalului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-logs</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Afișează ultimele erori ale sistemului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-db-backup</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Creează backup pentru baza de date.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-db-restore</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Restaurează baza de date la zi.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-whitelist</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Permite testarea doar de către developeri.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-bl-server <span>[ID]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Interzice accesul botului pe un server anume.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-add-money <span>[@u] [sumă]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Generează fonduri din rezervă.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-remove-money <span>[@u] [sumă]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Șterge fonduri din cont.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-reset-global</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Resetează economia globală.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-stats</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Afișează latența și serverele conectate.</div></div>
-            </div>
-        </div>
 
-        <!-- PAGINA 2: ECOSISTEM LOCAL -->
-        <div class="cmd-section">
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 20.5V10m0 0l-5 5m5-5l5 5M4 4h16v16H4z"/></svg>
-                </div>
-                <div class="section-info">
-                    <h2>Configurații Ecosistem Local (Pagina 2/4)</h2>
-                    <p>Autorizare: Nivel 3 (Admin). Setările de aici afectează direct toți membrii serverului curent.</p>
-                </div>
-            </div>
+            <!-- Page 1 Translated -->
+            <h3 style="color: #fff; font-family: 'Orbitron'; margin: 20px 0 15px 0; border-bottom: 1px solid rgba(138,43,226,0.3); padding-bottom: 5px;">Premium & Core Protocols</h3>
             <div class="cmd-grid">
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-prefix <span>[prefix]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Modifică prefixul botului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-lang <span>[limba]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Setează limba principală.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-ecoadmin <span>[@User]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Oferă acces economic unui membru.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-ecochannel <span>[#Canal]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Blochează comenzile eco pe canal.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-ecologs <span>[#Canal]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Setează canalul pentru tranzacții.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!eco-status</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Afișează starea modulelor financiare.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!toggle-eco</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Activează/Dezactivează economia locală.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!toggle-rob</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Permite sau interzice jaful între jucători.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!toggle-crime</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Activează protocoalele de risc ridicat.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!toggle-leveling</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Pornește sistemul de XP bazat pe chat.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-tax-rate <span>[%]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Setează impozitul reținut la muncă.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-work-cd <span>[secunde]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Timp de așteptare pentru Work.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-rob-cd <span>[secunde]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Timp de așteptare pentru Rob.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-crime-cd <span>[secunde]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Timp de așteptare pentru Crime.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-start-bal <span>[suma]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Banii primiți de un utilizator nou.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-max-bal <span>[suma]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Limita maximă a portofelului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!add-custom-item <span>[nume] [preț]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Creează obiect în magazinul local.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!remove-custom-item <span>[nume]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Șterge obiect din magazinul local.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-welcome <span>[#Canal]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Activează întâmpinarea jucătorilor.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-leave <span>[#Canal]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Activează mesajul de plecare.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-modlogs <span>[#Canal]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Înregistrează warn/ban-urile din server.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-autorole <span>[@Rol]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Rolul primit automat la intrare.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-tickets <span>[#Canal]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Activează sistemul de asistență intern.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-suggestions <span>[#Canal]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Pornește terminalul de sugestii.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">/premium</div><div class="badge public">VIP</div></div><div class="cmd-desc">View your current VIP status and benefits.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">/premium-buy</div><div class="badge public">VIP</div></div><div class="cmd-desc">Access the secure VIP purchasing portal.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!give-premium <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Grant a permanent VIP license to a citizen.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!take-premium <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Instantly revoke VIP access.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-ban <span>[@user]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Block user access to the entire ecosystem.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-maintenance</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Toggle mainframe maintenance mode.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-add-money <span>[@u] [amount]</span></div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Generate funds directly from the federal reserve.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!core-stats</div><div class="badge owner">OWNER</div></div><div class="cmd-desc">Display network latency and connected servers.</div></div>
+            </div>
+
+            <!-- Page 2 Translated -->
+            <h3 style="color: #fff; font-family: 'Orbitron'; margin: 40px 0 15px 0; border-bottom: 1px solid rgba(138,43,226,0.3); padding-bottom: 5px;">Local Ecosystem Configuration</h3>
+            <div class="cmd-grid">
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-prefix <span>[prefix]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Modify the bot's local command prefix.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-lang <span>[language]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Set the primary language for the sector.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!toggle-eco</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Enable/Disable the local economy module.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-tax-rate <span>[%]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Set the tax percentage withheld from work.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-welcome <span>[#Channel]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Enable automated player welcome protocols.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!set-autorole <span>[@Role]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Set the role automatically granted upon entry.</div></div>
+            </div>
+
+            <!-- Page 3 Translated -->
+            <h3 style="color: #fff; font-family: 'Orbitron'; margin: 40px 0 15px 0; border-bottom: 1px solid rgba(138,43,226,0.3); padding-bottom: 5px;">Enforcement & Safety Protocols</h3>
+            <div class="cmd-grid">
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!kick <span>[@user] [reason]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Expel a citizen from the network.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!ban <span>[@user] [reason]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Permanently exclude a citizen.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!timeout <span>[@user] [time]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Isolate the citizen (Chat restricted).</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!warn <span>[@user] [reason]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Log a formal infraction warning.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!clear <span>[1-100]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Purge messages from the current channel.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!anti-raid <span>[on/off]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Toggle protection against massive assaults.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!lockdown <span>[on/off]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Lockdown absolutely all server channels.</div></div>
+            </div>
+
+            <!-- Page 4 Translated -->
+            <h3 style="color: #fff; font-family: 'Orbitron'; margin: 40px 0 15px 0; border-bottom: 1px solid rgba(138,43,226,0.3); padding-bottom: 5px;">Public Information & Tools</h3>
+            <div class="cmd-grid">
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!ping</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Check network connection latency.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!userinfo <span>[@user]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Scan a citizen's digital fingerprint.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!avatar <span>[@user]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Extract user profile image.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!afk <span>[reason]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Activate hibernation mode (AFK).</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!weather <span>[city]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Scan current meteorological conditions.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!translate <span>[lang] [text]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Decrypt messages from other languages.</div></div>
+                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!help / /terminal</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Launch the Central Command Terminal.</div></div>
             </div>
         </div>
 
-        <!-- PAGINA 3: SIGURANȚĂ & MODERARE -->
-        <div class="cmd-section">
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="10" r="3" stroke="#ff5f56"/></svg>
-                </div>
-                <div class="section-info">
-                    <h2>Protocoale de Siguranță (Pagina 3/4)</h2>
-                    <p>Autorizare: Nivel 2 (Moderator). Sistemele de apărare și sancționare ale cetățenilor.</p>
-                </div>
+        <!-- SECTOR 2: CIVIL & ECONOMY (Placeholder) -->
+        <div id="civil" class="cmd-section">
+            <div class="sector-header">
+                <div class="sector-title">Civil & Economic Sector</div>
+                <div class="sector-desc">Obtain academic certifications, pursue a successful career, acquire luxury properties, and generate passive income.</div>
             </div>
-            <div class="cmd-grid">
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!kick <span>[@user] [motiv]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Expulzează un cetățean de pe rețea.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!ban <span>[@user] [motiv]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Exclude permanent un cetățean.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!unban <span>[ID]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Ridică restricția de excludere.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!timeout <span>[@user] [timp]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Izolează cetățeanul (Fără chat).</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!untimeout <span>[@user]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Ridică izolarea cetățeanului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!mute <span>[@user]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Aplică un rol de Mute restricționat.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!unmute <span>[@user]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Elimină rolul de Mute.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!warn <span>[@user] [motiv]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Înregistrează un avertisment formal.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!unwarn <span>[@user] [ID]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Șterge un avertisment din sistem.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!warns <span>[@user]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Verifică dosarul de infracțiuni.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!clear <span>[1-100]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Curăță mesajele din canalul curent.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!lock <span>[#Canal]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Încuie canalul pentru mentenanță.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!unlock <span>[#Canal]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Deblochează canalul de discuții.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!slowmode <span>[secunde]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Setează limita de mesaje/secundă.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!nuke</div><div class="badge mod">MOD</div></div><div class="cmd-desc">Distruge și recreează canalul (Curățare totală).</div></div>
-                
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!anti-spam <span>[on/off]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Activează scutul anti-spam automat.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!anti-link <span>[on/off]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Șterge automat link-urile neautorizate.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!anti-raid <span>[on/off]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Protecție împotriva asalturilor masive.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!verify-setup</div><div class="badge mod">MOD</div></div><div class="cmd-desc">Crează un panou captcha la intrare.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!audit <span>[@user]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Extrage istoricul acțiunilor de moderare.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!lockdown <span>[on/off]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Încuie absolut toate canalele serverului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!role-all <span>[@Rol]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Adaugă un rol tuturor cetățenilor.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!strip-roles <span>[@user]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Elimină rolurile unui cetățean.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!quarantine <span>[@user]</span></div><div class="badge mod">MOD</div></div><div class="cmd-desc">Mută utilizatorul în izolare totală.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!mod-stats</div><div class="badge mod">MOD</div></div><div class="cmd-desc">Afișează sancțiunile aplicate de moderatori.</div></div>
+            <div class="cmd-grid" id="civil-grid">
+                <!-- Commands will be populated here -->
+                <div class="cmd-row" style="opacity: 0.5; text-align: center; grid-column: 1 / -1;">
+                    <div class="cmd-desc">Awaiting Mainframe Data Injection...</div>
+                </div>
             </div>
         </div>
 
-        <!-- PAGINA 4: PUBLIC -->
-        <div class="cmd-section">
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                </div>
-                <div class="section-info">
-                    <h2>Informații și Unelte Generale (Pagina 4/4)</h2>
-                    <p>Autorizare: Nivel 0 (Acces Public). Protocoale disponibile pentru absolut toți cetățenii.</p>
-                </div>
+        <!-- SECTOR 3: CRYPTO (Placeholder) -->
+        <div id="crypto" class="cmd-section">
+            <div class="sector-header">
+                <div class="sector-title">Technology & Crypto Sector</div>
+                <div class="sector-desc">Install high-performance mining rigs, extract cryptocurrency, and speculate on the volatile digital market.</div>
             </div>
-            <div class="cmd-grid">
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!ping</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Verifică latența conexiunii la rețea.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!botinfo</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Extrage datele și statisticile botului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!userinfo <span>[@user]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Scanează amprenta digitală a unui cetățean.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!serverinfo</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Afișează detaliile tehnice ale sectorului.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!avatar <span>[@user]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Extrage imaginea de profil.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!banner <span>[@user]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Extrage bannerul de profil.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!server-icon</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Descarcă emblema serverului curent.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!invite</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Generează link-ul oficial Synthexia.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!vote</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Susține rețeaua și primește recompense.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!report <span>[text]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Raportează un bug sau un cetățean.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!suggest <span>[text]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Trimite o propunere pentru ecosistem.</div></div>
-                
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!afk <span>[motiv]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Activează modul de hibernare (AFK).</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!remind <span>[timp] [text]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Programează o alarmă în sistem.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!weather <span>[oraș]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Scanează condițiile meteorologice.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!calc <span>[ecuație]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Activează procesorul matematic.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!translate <span>[limba]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Decriptează mesaje din alte limbi.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!poll <span>[întrebare]</span></div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Lansează un sondaj public de opinie.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!gw-start <span>[t] [premiu]</span></div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Lansează o extragere (Giveaway).</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!gw-end</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Forțează închiderea extragerii.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!gw-reroll</div><div class="badge admin">ADMIN</div></div><div class="cmd-desc">Extrage un nou câștigător.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!ticket-open</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Deschide o linie de asistență (Ticket).</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!ticket-close</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Închide linia de asistență activă.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!leaderboard-eco</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Afișează cei mai bogați cetățeni.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!level</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Verifică experiența și rank-ul de chat curent.</div></div>
-                <div class="cmd-row"><div class="cmd-top"><div class="cmd-syntax">!help / /terminal</div><div class="badge public">PUBLIC</div></div><div class="cmd-desc">Lansează Terminalul Central (meniul).</div></div>
+            <div class="cmd-grid" id="crypto-grid">
+                <div class="cmd-row" style="opacity: 0.5; text-align: center; grid-column: 1 / -1;">
+                    <div class="cmd-desc">Awaiting Mainframe Data Injection...</div>
+                </div>
             </div>
         </div>
+
+        <!-- SECTOR 4: WARFARE (Placeholder) -->
+        <div id="warfare" class="cmd-section">
+            <div class="sector-header">
+                <div class="sector-title">Warfare & Territories Sector</div>
+                <div class="sector-desc">Form an invincible faction, conquer rival territories, extract rare minerals, and build fortified bases.</div>
+            </div>
+            <div class="cmd-grid" id="warfare-grid">
+                <div class="cmd-row" style="opacity: 0.5; text-align: center; grid-column: 1 / -1;">
+                    <div class="cmd-desc">Awaiting Mainframe Data Injection...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTOR 5: LIFESTYLE (Placeholder) -->
+        <div id="lifestyle" class="cmd-section">
+            <div class="sector-header">
+                <div class="sector-title">Lifestyle & Nature Sector</div>
+                <div class="sector-desc">Purchase supercars, tune engines, cultivate crops, and evolve digital pets for tactical duels.</div>
+            </div>
+            <div class="cmd-grid" id="lifestyle-grid">
+                <div class="cmd-row" style="opacity: 0.5; text-align: center; grid-column: 1 / -1;">
+                    <div class="cmd-desc">Awaiting Mainframe Data Injection...</div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <script>
-        // Cursor Custom - Zero Lag
+        // Custom Cursor Logic
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursorGlow = document.getElementById('cursor-glow');
             const cursorDot = document.getElementById('cursor-dot');
@@ -322,7 +290,7 @@
             requestAnimationFrame(renderCursor);
         }
 
-        // Efect Fulgi
+        // Snowflake Particles
         const container = document.getElementById('particle-container');
         const particleCount = window.innerWidth > 768 ? 40 : 20; 
         for (let i = 0; i < particleCount; i++) {
@@ -332,6 +300,20 @@
             sf.style.animationDuration = (Math.random() * 15 + 10) + 's';
             sf.style.animationDelay = (Math.random() * 10) + 's';
             container.appendChild(sf);
+        }
+
+        // Category Tab Switching Logic
+        function openSector(sectorName) {
+            // Remove 'active' class from all buttons and sections
+            const buttons = document.querySelectorAll('.cat-btn');
+            const sections = document.querySelectorAll('.cmd-section');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // Add 'active' class to clicked button and target section
+            event.target.classList.add('active');
+            document.getElementById(sectorName).classList.add('active');
         }
     </script>
 </body>
