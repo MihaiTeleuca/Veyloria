@@ -11,41 +11,52 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #080112; }
+        ::-webkit-scrollbar-track { background: #05000a; }
         ::-webkit-scrollbar-thumb { background: #8A2BE2; border-radius: 10px; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #080112; color: #ffffff;
+            background: #05000a; color: #ffffff;
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden; min-height: 100vh;
             cursor: none; 
         }
 
-        /* Fundal Plasma Orbs */
+        /* Background Grid */
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1;
+            background-image: 
+                linear-gradient(rgba(138, 43, 226, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px; pointer-events: none;
+            mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+        }
+
+        /* Plasma Orbs */
         .orb {
-            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
+            position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.25;
             animation: float 20s infinite alternate ease-in-out; z-index: 1; pointer-events: none;
         }
-        .orb-1 { width: 40vw; height: 40vw; background: #8A2BE2; top: -10%; left: -10%; }
-        .orb-2 { width: 50vw; height: 50vw; background: #4B0082; bottom: 10%; right: -10%; animation-delay: -5s; }
+        .orb-1 { width: 40vw; height: 40vw; min-width: 300px; background: #8A2BE2; top: -5%; left: -10%; }
+        .orb-2 { width: 50vw; height: 50vw; min-width: 400px; background: #4B0082; bottom: 5%; right: -10%; animation-delay: -5s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 100px) scale(1.1); }
+            100% { transform: translate(60px, 80px) scale(1.1); }
         }
 
-        /* Cursor Custom - Optimizat (Zero Lag) */
+        /* Zero-Lag Hardware Accelerated Cursor */
         @media (pointer: fine) {
             .cursor-glow {
-                width: 300px; height: 300px; background: radial-gradient(circle, rgba(138,43,226,0.15) 0%, transparent 70%);
-                border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+                width: 350px; height: 350px; background: radial-gradient(circle, rgba(138,43,226,0.12) 0%, transparent 60%);
+                border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
                 will-change: transform; transform: translate(-50%, -50%);
             }
             .cursor-dot {
-                width: 6px; height: 6px; background: #fff; box-shadow: 0 0 15px #8A2BE2; border-radius: 50%;
-                position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000;
+                width: 5px; height: 5px; background: #fff; box-shadow: 0 0 15px 2px #8A2BE2; border-radius: 50%;
+                position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
                 will-change: transform; transform: translate(-50%, -50%);
             }
         }
@@ -54,87 +65,135 @@
             .cursor-glow, .cursor-dot { display: none !important; }
         }
 
-        /* Particule Fulgi */
+        /* Particles */
         #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
-        .snowflake { position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.5; pointer-events: none; animation: fall linear infinite; }
+        .snowflake { position: absolute; background: #b05cff; border-radius: 50%; opacity: 0.4; pointer-events: none; animation: fall linear infinite; box-shadow: 0 0 8px #b05cff; }
         @keyframes fall {
-            0% { transform: translateY(-100px) scale(1); opacity: 0; }
+            0% { transform: translateY(-50px) scale(1); opacity: 0; }
             20% { opacity: 0.6; }
             80% { opacity: 0.6; }
             100% { transform: translateY(100vh) scale(0.3); opacity: 0; }
         }
 
-        /* Navigare */
+        /* Navigation */
         nav {
-            position: fixed; top: 0; width: 100%; background: rgba(8, 1, 18, 0.75); backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; background: rgba(5, 0, 10, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(138, 43, 226, 0.3); z-index: 100; padding: 15px 5%;
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; text-decoration: none; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: clamp(15px, 3vw, 30px); flex-wrap: wrap; }
         .nav-links a {
-            color: #b388ff; text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase;
+            color: #b388ff; text-decoration: none; font-size: clamp(0.9rem, 2vw, 1.05rem); font-weight: 700; text-transform: uppercase;
             letter-spacing: 1px; transition: 0.3s; position: relative;
         }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: #8A2BE2; bottom: -5px; left: 50%; transform: translateX(-50%); transition: width 0.3s; box-shadow: 0 0 10px #8A2BE2; }
         .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px #8A2BE2; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-        /* Container Principal */
-        main { position: relative; z-index: 10; padding-top: 120px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
+        /* Main Container */
+        main { position: relative; z-index: 10; padding-top: 140px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
 
+        /* Hero Section */
+        .hero-section { width: 100%; max-width: 1200px; padding: 0 5%; margin-bottom: 80px; }
         .glitch-title {
             font-family: 'Orbitron', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 900; text-transform: uppercase;
-            color: #fff; text-shadow: 0 0 20px #8A2BE2, 0 0 50px #9932CC; margin-bottom: 10px; line-height: 1.1;
-            padding: 0 10px; animation: pulseTitle 3s infinite alternate;
+            color: #fff; text-shadow: 0 0 20px #8A2BE2, 0 0 50px #9932CC; margin-bottom: 15px; line-height: 1.1;
+            animation: pulseTitle 3s infinite alternate; letter-spacing: 2px;
         }
         @keyframes pulseTitle { 0% { text-shadow: 0 0 15px #8A2BE2; } 100% { text-shadow: 0 0 30px #b05cff, 0 0 70px #8A2BE2; } }
 
         .typewriter-container {
             font-size: clamp(1.2rem, 3vw, 1.8rem); color: #B19CD9; letter-spacing: 3px; font-family: 'Orbitron', sans-serif;
-            margin-bottom: 40px; min-height: 40px; padding: 0 15px;
+            margin-bottom: 40px; min-height: 40px; padding: 0 15px; text-transform: uppercase;
         }
         .cursor-blink { animation: blink 1s infinite; color: #fff; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+        .btn-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
         .invite-btn {
-            display: inline-block; padding: 15px 40px; background: rgba(138, 43, 226, 0.1);
-            border: 1px solid #8A2BE2; border-radius: 5px; color: #fff; font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 700; text-transform: uppercase; text-decoration: none;
-            letter-spacing: 2px; position: relative; overflow: hidden; transition: 0.5s;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); margin-bottom: 60px;
+            display: inline-block; padding: 16px 40px; background: rgba(138, 43, 226, 0.15); backdrop-filter: blur(10px);
+            border: 1px solid #8A2BE2; border-radius: 6px; color: #fff; font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 700; text-transform: uppercase; text-decoration: none;
+            letter-spacing: 2px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
         }
-        .invite-btn:hover { background: #8A2BE2; box-shadow: 0 0 40px #8A2BE2; transform: scale(1.05); }
+        .invite-btn:hover { background: #8A2BE2; box-shadow: 0 0 40px #8A2BE2; transform: translateY(-5px) scale(1.02); }
+        
+        .secondary-btn {
+            display: inline-block; padding: 16px 40px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #d1b3ff; font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 700; text-transform: uppercase; text-decoration: none;
+            letter-spacing: 2px; transition: all 0.4s;
+        }
+        .secondary-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: #fff; transform: translateY(-5px); }
 
         /* Dashboard & Stats Grid */
         .dashboard-grid {
             display: flex; gap: 40px; align-items: center; justify-content: center;
-            flex-wrap: wrap; width: 100%; max-width: 1200px; padding: 0 5%; margin-bottom: 80px;
+            flex-wrap: wrap; width: 100%; max-width: 1300px; padding: 0 5%; margin-bottom: 100px;
         }
 
-        .stats-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 350px; }
-        .stat-box {
-            background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(10px); border-left: 4px solid #8A2BE2;
-            padding: 20px; border-radius: 10px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .stat-number { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px #8A2BE2; }
-        .stat-label { font-size: 1rem; color: #b388ff; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Terminal 3D */
-        .terminal-wrapper { perspective: 1000px; width: 100%; max-width: 500px; }
+        /* 3D Tilt Terminal */
+        .terminal-wrapper { perspective: 1000px; width: 100%; max-width: 550px; }
         .terminal {
-            background: rgba(5, 1, 10, 0.85); border: 1px solid rgba(138, 43, 226, 0.4);
-            border-radius: 10px; width: 100%; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            background: rgba(5, 1, 10, 0.85); border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(15px);
+            border-radius: 12px; width: 100%; padding: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.7);
             font-family: 'Fira Code', monospace; text-align: left; transform-style: preserve-3d; transition: transform 0.1s ease-out;
+            position: relative; overflow: hidden;
         }
-        .terminal-header { display: flex; gap: 8px; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding-bottom: 10px; margin-bottom: 15px; }
+        .terminal::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #8A2BE2; box-shadow: 0 0 15px #8A2BE2; }
+        .terminal-header { display: flex; gap: 8px; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding-bottom: 12px; margin-bottom: 15px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot-red { background: #ff5f56; } .dot-yel { background: #ffbd2e; } .dot-grn { background: #27c93f; }
-        .term-line { margin-bottom: 10px; font-size: clamp(0.85rem, 2vw, 1rem); line-height: 1.5; color: #a5a5a5; word-wrap: break-word; }
+        .term-line { margin-bottom: 12px; font-size: clamp(0.9rem, 2vw, 1.05rem); line-height: 1.5; color: #a5a5a5; }
         .term-user { color: #b05cff; font-weight: bold; }
         .term-cmd { color: #fff; }
         .term-output { color: #27c93f; }
         .term-system { color: #8A2BE2; font-style: italic; }
 
-        /* Butonul Discord Plutitor */
+        /* Global Network Stats */
+        .stats-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 500px; }
+        .stat-box {
+            background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(10px); border-top: 3px solid #8A2BE2;
+            padding: 25px 20px; border-radius: 8px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s; display: flex; flex-direction: column; justify-content: center;
+        }
+        .stat-box:hover { transform: translateY(-5px); border-color: #b05cff; box-shadow: 0 15px 40px rgba(138,43,226,0.2); }
+        .stat-number { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; margin-bottom: 5px; }
+        .stat-label { font-size: 1rem; color: #b388ff; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+
+        /* Feature Showcase Section */
+        .showcase-section { width: 100%; max-width: 1400px; padding: 0 5%; margin-bottom: 100px; text-align: left; }
+        .section-title {
+            font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff; text-align: center;
+            text-shadow: 0 0 15px #8A2BE2; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px;
+        }
+        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .showcase-card {
+            background: rgba(10, 2, 20, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 12px; padding: 30px; transition: all 0.4s ease; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .showcase-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.1), transparent);
+            transform: skewX(-20deg); transition: 0.5s; pointer-events: none;
+        }
+        .showcase-card:hover { border-color: #b05cff; transform: translateY(-10px); box-shadow: 0 15px 40px rgba(138, 43, 226, 0.25); }
+        .showcase-card:hover::before { left: 200%; }
+
+        .sc-icon { font-size: 2.5rem; margin-bottom: 20px; display: inline-block; text-shadow: 0 0 15px #8A2BE2; }
+        .sc-title { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; margin-bottom: 15px; }
+        .sc-desc { font-size: 1.1rem; color: #d1b3ff; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+        .sc-cmd {
+            background: rgba(0,0,0,0.5); border-left: 3px solid #27c93f; padding: 12px; border-radius: 6px;
+            font-family: 'Fira Code', monospace; font-size: 0.95rem; color: #a5a5a5;
+        }
+        .sc-cmd span { color: #fff; font-weight: bold; }
+
+        /* Floating Discord Button */
         .discord-floating-btn {
             position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
             background: rgba(138, 43, 226, 0.2); backdrop-filter: blur(10px);
@@ -143,27 +202,43 @@
             transition: all 0.4s ease; animation: discordPulse 2s infinite; text-decoration: none;
         }
         .discord-floating-btn svg { width: 35px; height: 35px; fill: #ffffff; transition: all 0.4s ease; }
-        
-        .discord-floating-btn:hover {
-            background: #8A2BE2; transform: scale(1.15) translateY(-5px);
-            box-shadow: 0 0 30px #8A2BE2, 0 0 60px #9932CC; animation: none;
-        }
+        .discord-floating-btn:hover { background: #8A2BE2; transform: scale(1.15) translateY(-5px); box-shadow: 0 0 30px #8A2BE2, 0 0 60px #9932CC; animation: none; }
         .discord-floating-btn:hover svg { transform: scale(1.1) rotate(-8deg); }
+        @keyframes discordPulse { 0%, 100% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.4); transform: scale(1); } 50% { box-shadow: 0 0 30px rgba(138, 43, 226, 0.8); transform: scale(1.05); } }
 
-        @keyframes discordPulse {
-            0% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.4); transform: scale(1); }
-            50% { box-shadow: 0 0 30px rgba(138, 43, 226, 0.8); transform: scale(1.05); }
-            100% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.4); transform: scale(1); }
+        /* Footer */
+        footer {
+            width: 100%; background: rgba(5, 0, 10, 0.95); border-top: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 60px 5% 30px 5%; position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center;
         }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
+            width: 100%; max-width: 1200px; margin-bottom: 40px; text-align: center;
+        }
+        @media (min-width: 768px) { .footer-grid { text-align: left; } }
+        
+        .footer-col h4 { font-family: 'Orbitron', sans-serif; color: #fff; font-size: 1.4rem; margin-bottom: 20px; text-shadow: 0 0 10px #8A2BE2; }
+        .footer-col p { color: #a5a5a5; font-size: 1.05rem; line-height: 1.6; margin-bottom: 15px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #d1b3ff; text-decoration: none; font-size: 1.05rem; transition: 0.3s; }
+        .footer-links a:hover { color: #fff; text-shadow: 0 0 10px #8A2BE2; padding-left: 5px; }
+        
+        .footer-bottom {
+            width: 100%; max-width: 1200px; border-top: 1px solid rgba(138,43,226,0.2); padding-top: 25px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+        }
+        .copyright { color: #777; font-size: 0.95rem; }
+        .version { font-family: 'Fira Code', monospace; color: #8A2BE2; font-size: 0.9rem; border: 1px solid rgba(138,43,226,0.3); padding: 3px 8px; border-radius: 4px; }
 
-        /* Media Queries pentru Telefoane */
+        /* Media Queries Mobile */
         @media (max-width: 768px) {
             nav { justify-content: center; flex-direction: column; gap: 15px; padding: 15px; }
             .nav-links { justify-content: center; }
             main { padding-top: 150px; }
-            .terminal { padding: 15px; }
-            
-            /* Ajustare Buton Discord pe Mobil */
+            .terminal { padding: 15px; transform: none !important; }
+            .stats-container { grid-template-columns: 1fr; }
+            .footer-bottom { justify-content: center; text-align: center; }
             .discord-floating-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
             .discord-floating-btn svg { width: 28px; height: 28px; }
         }
@@ -171,29 +246,36 @@
 </head>
 <body>
 
+    <div class="grid-bg"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+    <div id="particle-container"></div>
     
     <div class="cursor-glow" id="cursor-glow"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
-    <div id="particle-container"></div>
 
     <nav>
         <a href="index.html" class="logo">SYNTHEXIA</a>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
-            <a href="commands.html">Commands</a> <a href="about.html">About</a>
+            <a href="commands.html">Commands</a>
+            <a href="about.html">Engine</a>
             <a href="tos.html">T.O.S</a>
         </div>
     </nav>
 
     <main>
-        <h1 class="glitch-title">SYNTHEXIA</h1>
-        <div class="typewriter-container">
-            <span id="typewriter-text"></span><span class="cursor-blink">_</span>
+        <div class="hero-section">
+            <h1 class="glitch-title">SYNTHEXIA</h1>
+            <div class="typewriter-container">
+                <span id="typewriter-text"></span><span class="cursor-blink">_</span>
+            </div>
+            
+            <div class="btn-container">
+                <a href="https://discord.com/oauth2/authorize?client_id=1511320585823588352&permissions=6755657571626102&integration_type=0&scope=bot+applications.commands" target="_blank" class="invite-btn">Initialize Connection</a>
+                <a href="commands.html" class="secondary-btn">View Protocols</a>
+            </div>
         </div>
-        
-        <a href="https://discord.com/oauth2/authorize?client_id=1511320585823588352&permissions=6755657571626102&integration_type=0&scope=bot+applications.commands" target="_blank" class="invite-btn">Initialize Connection</a>
 
         <div class="dashboard-grid">
             <div class="terminal-wrapper">
@@ -202,45 +284,132 @@
                         <div class="dot dot-red"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div>
                     </div>
                     <div class="term-line">
-                        <span class="term-system">[System]:</span> Core Variables Active: English.
+                        <span class="term-system">[System]:</span> Core Language Modules: <span style="color:#fff;">10 Active</span>
                     </div>
                     <div class="term-line">
-                        <span class="term-system">[System]:</span> UI Formatting: Clean.
+                        <span class="term-system">[System]:</span> Security Protocols: <span style="color:#27c93f;">Online</span>
                     </div>
                     <div class="term-line">
-                        <span class="term-user">User@Discord:~$</span> <span class="term-cmd">!bal</span>
+                        <span class="term-user">Agent@Synthexia:~$</span> <span class="term-cmd">!networth @teleucamihai</span>
                     </div>
-                    <div class="term-line" style="border-left: 2px solid #8A2BE2; padding-left: 10px;">
-                        <span class="term-output">💳 Wallet: $5,400,000 | 🏦 Bank: $12,000,000</span><br>
-                        <span class="term-output">🔒 BankLocked: Active</span>
+                    <div class="term-line" style="border-left: 2px solid #8A2BE2; padding-left: 10px; margin-top: 10px;">
+                        <span class="term-output">💳 Wallet: $12,500,000 | 🏦 Bank: $450,000,000</span><br>
+                        <span class="term-output">🏢 Real Estate Value: $1.2B</span><br>
+                        <span class="term-output">📊 Total Net Worth: $1.66 Billion</span>
                     </div>
-                    <div class="term-line">
-                        <span class="term-user">User@Discord:~$</span> <span class="term-cmd blink-cmd">_</span>
+                    <div class="term-line" style="margin-top: 10px;">
+                        <span class="term-user">Agent@Synthexia:~$</span> <span class="term-cmd blink-cmd">_</span>
                     </div>
                 </div>
             </div>
 
             <div class="stats-container">
                 <div class="stat-box">
-                    <div class="stat-number" data-target="100">0</div>
-                    <div class="stat-label">% Native Logic</div>
+                    <div class="stat-number count-up" data-target="1050">0</div>
+                    <div class="stat-label">Native Commands</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number" data-target="9999">0</div>
-                    <div class="stat-label">Currency Routed</div>
+                    <div class="stat-number count-up" data-target="1250">0</div>
+                    <div class="stat-label">Global Servers</div>
                 </div>
+                <div class="stat-box">
+                    <div class="stat-number count-up" data-target="85000">0</div>
+                    <div class="stat-label">Active Citizens</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Supported Languages</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="showcase-section">
+            <h2 class="section-title">Core Ecosystem Modules</h2>
+            <div class="showcase-grid">
+                
+                <div class="showcase-card">
+                    <div class="sc-icon">🏦</div>
+                    <h3 class="sc-title">Global Economy & Estates</h3>
+                    <p class="sc-desc">Dominate the financial market. Buy luxury penthouses, establish corporate empires, and generate massive passive income through dynamic stock exchanges.</p>
+                    <div class="sc-cmd">Example: <span>!buy-estate [id]</span></div>
+                </div>
+
+                <div class="showcase-card">
+                    <div class="sc-icon">⚔️</div>
+                    <h3 class="sc-title">Tactical Warfare & Clans</h3>
+                    <p class="sc-desc">Found your own syndicate. Claim territories, wage war against rival factions, and protect your headquarters with automated defense turrets.</p>
+                    <div class="sc-cmd">Example: <span>!nuke-launch [clan]</span></div>
+                </div>
+
+                <div class="showcase-card">
+                    <div class="sc-icon">🧬</div>
+                    <h3 class="sc-title">Bio-Genetics & Pets</h3>
+                    <p class="sc-desc">Incubate biological specimens, extract DNA, force genetic mutations, and train your digital companions for fierce tactical arena combat.</p>
+                    <div class="sc-cmd">Example: <span>!mutate [id]</span></div>
+                </div>
+
+                <div class="showcase-card">
+                    <div class="sc-icon">🏎️</div>
+                    <h3 class="sc-title">Underground Racing</h3>
+                    <p class="sc-desc">Purchase 1000HP hypercars, tune your engines on the dyno, and race for pink slips while evading the highest police heat levels.</p>
+                    <div class="sc-cmd">Example: <span>!pink-slip [@user]</span></div>
+                </div>
+
+                <div class="showcase-card">
+                    <div class="sc-icon">💻</div>
+                    <h3 class="sc-title">Tech, Crypto & Web3</h3>
+                    <p class="sc-desc">Build massive ASIC mining rigs, speculate on extreme crypto volatility, and execute cyber-attacks against rival hot wallets.</p>
+                    <div class="sc-cmd">Example: <span>!rig-overclock [name]</span></div>
+                </div>
+
+                <div class="showcase-card">
+                    <div class="sc-icon">🛡️</div>
+                    <h3 class="sc-title">Ultimate Server Security</h3>
+                    <p class="sc-desc">Deploy multi-layered verification systems, auto-moderation firewalls, and detailed audit logs to keep your community absolutely secure.</p>
+                    <div class="sc-cmd">Example: <span>!verify-setup</span></div>
+                </div>
+
             </div>
         </div>
     </main>
 
-    <a href="https://discord.com/oauth2/authorize?client_id=1511320585823588352&permissions=6755932420175984&integration_type=0&scope=bot+applications.commands" title="Join Support Server" class="discord-floating-btn">
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>SYNTHEXIA HQ</h4>
+                <p>The ultimate 100% native Discord Engine. Operating without external APIs for zero latency and indestructible logic processing. Welcome to the future of community management.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Main Terminal</a></li>
+                    <li><a href="commands.html">Command Directory</a></li>
+                    <li><a href="about.html">Engine Architecture</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Support</h4>
+                <ul class="footer-links">
+                    <li><a href="tos.html">Terms of Service</a></li>
+                    <li><a href="https://discord.gg/C9y9CyFpPG" target="_blank">Support Network</a></li>
+                    <li><a href="#">Privacy Protocol</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">&copy; 2026 Synthexia Core. All rights reserved.</div>
+            <div class="version">OS_v4.5_STABLE</div>
+        </div>
+    </footer>
+
+    <a href="https://discord.gg/C9y9CyFpPG" target="_blank" title="Join Support Server" class="discord-floating-btn">
         <svg viewBox="0 0 127.14 96.36">
             <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14c2.64-27.38-4.51-51.11-19.32-72.15ZM42.68,65.27c-5.36,0-9.72-4.86-9.72-10.84s4.28-10.84,9.72-10.84c5.45,0,9.76,4.86,9.72,10.84C52.4,60.41,48.13,65.27,42.68,65.27Zm41.71,0c-5.36,0-9.72-4.86-9.72-10.84s4.28-10.84,9.72-10.84c5.45,0,9.76,4.86,9.72,10.84C89.84,60.41,85.57,65.27,84.39,65.27Z"/>
         </svg>
     </a>
 
     <script>
-        // Cursor Custom - Optimizat (Zero Lag prin Hardware Acceleration)
+        // Hardware Accelerated Custom Cursor
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursorGlow = document.getElementById('cursor-glow');
             const cursorDot = document.getElementById('cursor-dot');
@@ -264,9 +433,9 @@
             requestAnimationFrame(renderCursor);
         }
 
-        // Efect Fulgi
+        // Particle System
         const container = document.getElementById('particle-container');
-        const particleCount = window.innerWidth > 768 ? 50 : 25; 
+        const particleCount = window.innerWidth > 768 ? 40 : 15; 
         for (let i = 0; i < particleCount; i++) {
             let sf = document.createElement('div'); sf.classList.add('snowflake');
             sf.style.width = sf.style.height = (Math.random() * 4 + 1) + 'px';
@@ -277,50 +446,65 @@
         }
 
         // Typewriter Effect
-        const phrases = ["Dominate the Market.", "Build Your Empire.", "Immaculate Output.", "The Absolute Pinnacle."];
+        const phrases = ["Dominate the Market.", "Command Your Syndicate.", "Extract the Code.", "The Absolute Pinnacle."];
         let i = 0, j = 0, isDeleting = false;
         const textTarget = document.getElementById("typewriter-text");
 
         function loop() {
             textTarget.innerHTML = phrases[i].substring(0, j);
             if (!isDeleting && j < phrases[i].length) {
-                j++; setTimeout(loop, Math.random() * 50 + 50);
+                j++; setTimeout(loop, 60);
             } else if (isDeleting && j > 0) {
-                j--; setTimeout(loop, Math.random() * 30 + 30);
+                j--; setTimeout(loop, 30);
             } else if (j === phrases[i].length) {
-                isDeleting = true; setTimeout(loop, 2000);
+                isDeleting = true; setTimeout(loop, 2500);
             } else if (j === 0) {
                 isDeleting = false; i = (i + 1) % phrases.length; setTimeout(loop, 500);
             }
         }
         loop();
 
-        // Live Stats
-        const counters = document.querySelectorAll('.stat-number');
-        counters.forEach(counter => {
-            const updateCount = () => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const speed = target / 50; 
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + speed);
-                    setTimeout(updateCount, 40);
-                } else {
-                    counter.innerText = target + (target > 100 ? "+" : "%");
-                }
-            };
-            updateCount();
-        });
-
-        // 3D Tilt Terminal
+        // 3D Tilt Terminal (Desktop Only)
         if (window.matchMedia("(min-width: 768px)").matches) {
             const terminal = document.getElementById('tilt-terminal');
             document.addEventListener('mousemove', (e) => {
-                let xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-                let yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                let xAxis = (window.innerWidth / 2 - e.pageX) / 60;
+                let yAxis = (window.innerHeight / 2 - e.pageY) / 60;
                 terminal.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
             });
         }
+
+        // Animated Counters on Scroll
+        const counters = document.querySelectorAll('.count-up');
+        let observerOptions = { threshold: 0.5 };
+        
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    let count = 0;
+                    // Format number with commas
+                    const formatNumber = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    
+                    const updateCount = () => {
+                        const increment = target / 60; // adjust speed here
+                        if (count < target) {
+                            count += increment;
+                            entry.target.innerText = formatNumber(Math.ceil(count)) + "+";
+                            setTimeout(updateCount, 25);
+                        } else {
+                            entry.target.innerText = formatNumber(target) + "+";
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(entry.target); // Run once
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
     </script>
 </body>
 </html>
