@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Synthexia | The Ultimate Discord Engine</title>
+    <title>Synthexia | Premium Access</title>
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23080112%22 stroke=%22%238A2BE2%22 stroke-width=%228%22/><text x=%2250%22 y=%2268%22 font-family=%22Orbitron, sans-serif%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23d1b3ff%22 text-anchor=%22middle%22>S</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22[w3.org](http://www.w3.org/2000/svg%22) viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23080112%22 stroke=%22%238A2BE2%22 stroke-width=%228%22/><text x=%2250%22 y=%2268%22 font-family=%22Orbitron, sans-serif%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23d1b3ff%22 text-anchor=%22middle%22>S</text></svg>">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap');
+        @import url('[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap)');
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -39,6 +39,7 @@
         }
         .orb-1 { width: 45vw; height: 45vw; background: #8A2BE2; top: -10%; left: -10%; }
         .orb-2 { width: 55vw; height: 55vw; background: #4B0082; bottom: 10%; right: -10%; animation-delay: -5s; }
+        .orb-3 { width: 35vw; height: 35vw; background: #FFD700; top: 50%; left: 60%; opacity: 0.08; animation-delay: -10s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
@@ -81,119 +82,148 @@
         main { position: relative; z-index: 10; padding-top: 140px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
 
         /* Hero Section */
-        .hero-section { width: 100%; max-width: 1200px; padding: 0 5%; margin-bottom: 60px; }
-        .glitch-title {
-            font-family: 'Orbitron', sans-serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; text-transform: uppercase;
-            color: #fff; text-shadow: 0 0 20px #8A2BE2, 0 0 50px #9932CC; margin-bottom: 15px; line-height: 1.1;
-            animation: pulseTitle 3s infinite alternate; letter-spacing: 2px;
+        .premium-hero { width: 100%; max-width: 900px; padding: 0 5%; margin-bottom: 80px; }
+        .premium-badge {
+            display: inline-block; background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+            color: #1a0a00; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 900;
+            padding: 8px 25px; border-radius: 30px; text-transform: uppercase; letter-spacing: 2px;
+            margin-bottom: 25px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: goldShimmer 3s infinite;
         }
-        @keyframes pulseTitle { 0% { text-shadow: 0 0 15px #8A2BE2; } 100% { text-shadow: 0 0 30px #b05cff, 0 0 70px #8A2BE2; } }
-
-        .typewriter-container { font-size: clamp(1.2rem, 3vw, 1.8rem); color: #B19CD9; letter-spacing: 3px; font-family: 'Orbitron', sans-serif; margin-bottom: 40px; min-height: 40px; text-transform: uppercase; }
-        .cursor-blink { animation: blink 1s infinite; color: #fff; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        .btn-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
-        .invite-btn {
-            display: inline-block; padding: 18px 45px; background: rgba(138, 43, 226, 0.15); backdrop-filter: blur(10px);
-            border: 1px solid #8A2BE2; border-radius: 8px; color: #fff; font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 700; text-transform: uppercase; text-decoration: none;
-            letter-spacing: 2px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
-        }
-        .invite-btn:hover { background: #8A2BE2; box-shadow: 0 0 40px #8A2BE2; transform: translateY(-5px) scale(1.02); }
-        
-        .secondary-btn {
-            display: inline-block; padding: 18px 45px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #d1b3ff; font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 700; text-transform: uppercase; text-decoration: none;
-            letter-spacing: 2px; transition: all 0.4s;
-        }
-        .secondary-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: #fff; transform: translateY(-5px); }
-
-        /* Dashboard Flex Container */
-        .dashboard-flex {
-            display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; align-items: stretch;
-            width: 100%; max-width: 1400px; padding: 0 5%; margin-bottom: 100px;
+        @keyframes goldShimmer {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 165, 0, 0.3); }
         }
 
-        /* 3D Tilt Terminal */
-        .terminal-wrapper { perspective: 1000px; width: 100%; max-width: 600px; flex: 1 1 400px; }
-        .terminal {
-            background: rgba(5, 1, 10, 0.85); border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(15px);
-            border-radius: 12px; width: 100%; height: 100%; min-height: 300px; padding: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-            font-family: 'Fira Code', monospace; text-align: left; transform-style: preserve-3d; transition: transform 0.1s ease-out;
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
+        .premium-title {
+            font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #FFD700 50%, #FFA500 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 20px; line-height: 1.1; text-transform: uppercase;
         }
-        .terminal::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #8A2BE2; box-shadow: 0 0 15px #8A2BE2; }
-        .terminal-header { display: flex; gap: 8px; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding-bottom: 12px; margin-bottom: 15px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-red { background: #ff5f56; } .dot-yel { background: #ffbd2e; } .dot-grn { background: #27c93f; }
-        .term-line { margin-bottom: 12px; font-size: clamp(0.95rem, 2vw, 1.1rem); line-height: 1.6; color: #a5a5a5; }
-        .term-user { color: #b05cff; font-weight: bold; }
-        .term-cmd { color: #fff; }
-        .term-output { color: #27c93f; text-shadow: 0 0 5px rgba(39, 201, 63, 0.5); }
-        .term-system { color: #8A2BE2; font-style: italic; }
+        .premium-subtitle { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: #d1b3ff; max-width: 700px; margin: 0 auto 40px; line-height: 1.6; }
 
-        /* Live Server Stats */
-        .live-stats-wrapper { flex: 1 1 400px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .stat-box {
-            background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(10px); border-top: 3px solid #8A2BE2;
-            padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            transition: 0.3s; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;
-        }
-        .stat-box::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, rgba(138,43,226,0.1), transparent); opacity: 0; transition: 0.3s; }
-        .stat-box:hover { transform: translateY(-8px); border-color: #b05cff; box-shadow: 0 20px 40px rgba(138,43,226,0.25); }
-        .stat-box:hover::before { opacity: 1; }
-        .stat-number { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #fff; text-shadow: 0 0 15px #8A2BE2; margin-bottom: 8px; position: relative; z-index: 2; }
-        .stat-label { font-size: 1.1rem; color: #b388ff; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; position: relative; z-index: 2; }
-
-        /* Modules Showcase */
-        .showcase-section { width: 100%; max-width: 1400px; padding: 0 5%; margin-bottom: 100px; text-align: left; }
+        /* Pricing Cards */
+        .pricing-section { width: 100%; max-width: 1400px; padding: 0 5%; margin-bottom: 100px; }
         .section-title {
-            font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff; text-align: center;
+            font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: #fff; text-align: center;
             text-shadow: 0 0 15px #8A2BE2; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 2px;
         }
-        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .sc-card {
-            background: rgba(10, 2, 20, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 12px; padding: 35px 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden; display: flex; flex-direction: column; height: 100%;
-        }
-        .sc-card::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.1), transparent);
-            transform: skewX(-20deg); transition: 0.5s; pointer-events: none;
-        }
-        .sc-card:hover { border-color: #b05cff; transform: translateY(-10px); box-shadow: 0 15px 40px rgba(138, 43, 226, 0.3); }
-        .sc-card:hover::before { left: 200%; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: stretch; }
 
-        .sc-icon { font-size: 3rem; margin-bottom: 20px; text-shadow: 0 0 15px #8A2BE2; }
-        .sc-title { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
-        .sc-desc { font-size: 1.15rem; color: #d1b3ff; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
-        
-        .sc-cmd-list { display: flex; flex-direction: column; gap: 10px; }
-        .sc-cmd {
-            background: rgba(0,0,0,0.6); border-left: 3px solid #27c93f; padding: 10px 15px; border-radius: 6px;
-            font-family: 'Fira Code', monospace; font-size: 0.95rem; color: #a5a5a5; display: flex; justify-content: space-between;
+        .price-card {
+            background: rgba(10, 2, 20, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 16px; padding: 40px 30px; position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column;
         }
-        .sc-cmd span.cmd-name { color: #fff; font-weight: bold; }
-        .sc-cmd span.cmd-badge { background: rgba(39, 201, 63, 0.15); color: #27c93f; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; text-transform: uppercase; }
-
-        /* Floating Discord Button */
-        .discord-floating-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
-            background: rgba(138, 43, 226, 0.2); backdrop-filter: blur(10px);
-            border: 2px solid #8A2BE2; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            z-index: 1000; box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-            transition: all 0.4s ease; animation: discordPulse 2s infinite; text-decoration: none;
+        .price-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #8A2BE2, #b05cff); opacity: 0.5;
         }
-        .discord-floating-btn svg { width: 35px; height: 35px; fill: #ffffff; transition: all 0.4s ease; }
-        .discord-floating-btn:hover { background: #8A2BE2; transform: scale(1.15) translateY(-5px); box-shadow: 0 0 30px #8A2BE2, 0 0 60px #9932CC; animation: none; }
-        .discord-floating-btn:hover svg { transform: scale(1.1) rotate(-8deg); }
-        @keyframes discordPulse { 0%, 100% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.4); transform: scale(1); } 50% { box-shadow: 0 0 30px rgba(138, 43, 226, 0.8); transform: scale(1.05); } }
+        .price-card:hover { transform: translateY(-10px); border-color: #8A2BE2; box-shadow: 0 20px 50px rgba(138, 43, 226, 0.3); }
 
-        /* Footer Profesional */
+        .price-card.featured {
+            border-color: #FFD700; background: rgba(20, 5, 30, 0.85);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+        }
+        .price-card.featured::before { background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700); opacity: 1; }
+        .price-card.featured:hover { box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3); }
+
+        .card-badge {
+            position: absolute; top: 20px; right: -35px; background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #1a0a00; font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 900;
+            padding: 6px 50px; transform: rotate(45deg); text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .card-tier { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; color: #b388ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .price-card.featured .card-tier { color: #FFD700; }
+
+        .card-price { margin-bottom: 25px; }
+        .card-price .amount { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 900; color: #fff; }
+        .card-price .currency { font-size: 1.5rem; color: #b388ff; vertical-align: super; }
+        .card-price .period { font-size: 1.1rem; color: #777; }
+
+        .card-desc { font-size: 1.1rem; color: #a5a5a5; margin-bottom: 30px; line-height: 1.5; }
+
+        .feature-list { list-style: none; margin-bottom: 35px; flex-grow: 1; text-align: left; }
+        .feature-list li { padding: 12px 0; border-bottom: 1px solid rgba(138, 43, 226, 0.15); font-size: 1.05rem; color: #d1b3ff; display: flex; align-items: center; gap: 12px; }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-list .check { color: #27c93f; font-size: 1.2rem; }
+        .feature-list .cross { color: #ff5f56; font-size: 1.2rem; }
+        .feature-list .star { color: #FFD700; font-size: 1.2rem; }
+
+        .subscribe-btn {
+            display: block; width: 100%; padding: 18px; background: rgba(138, 43, 226, 0.2); backdrop-filter: blur(10px);
+            border: 1px solid #8A2BE2; border-radius: 10px; color: #fff; font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem; font-weight: 700; text-transform: uppercase; text-decoration: none;
+            letter-spacing: 2px; transition: all 0.4s; text-align: center;
+        }
+        .subscribe-btn:hover { background: #8A2BE2; box-shadow: 0 0 30px #8A2BE2; transform: scale(1.02); }
+
+        .price-card.featured .subscribe-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none; color: #1a0a00;
+        }
+        .price-card.featured .subscribe-btn:hover { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+
+        /* Comparison Table */
+        .comparison-section { width: 100%; max-width: 1200px; padding: 0 5%; margin-bottom: 100px; }
+        .comparison-table { width: 100%; border-collapse: collapse; background: rgba(10, 2, 20, 0.6); backdrop-filter: blur(10px); border-radius: 12px; overflow: hidden; }
+        .comparison-table th, .comparison-table td { padding: 20px 15px; text-align: center; border-bottom: 1px solid rgba(138, 43, 226, 0.2); }
+        .comparison-table thead { background: rgba(138, 43, 226, 0.15); }
+        .comparison-table th { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .comparison-table th.gold { color: #FFD700; }
+        .comparison-table td { color: #d1b3ff; font-size: 1rem; }
+        .comparison-table td:first-child { text-align: left; font-weight: 600; color: #fff; }
+        .comparison-table tbody tr:hover { background: rgba(138, 43, 226, 0.1); }
+        .comparison-table .icon-check { color: #27c93f; font-size: 1.3rem; }
+        .comparison-table .icon-cross { color: #555; font-size: 1.3rem; }
+        .comparison-table .icon-star { color: #FFD700; font-size: 1.3rem; }
+
+        /* Perks Section */
+        .perks-section { width: 100%; max-width: 1400px; padding: 0 5%; margin-bottom: 100px; }
+        .perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .perk-card {
+            background: rgba(15, 3, 26, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 12px; padding: 30px 25px; text-align: center; transition: 0.3s;
+        }
+        .perk-card:hover { border-color: #FFD700; transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255, 215, 0, 0.15); }
+        .perk-icon { font-size: 3rem; margin-bottom: 20px; }
+        .perk-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; color: #fff; margin-bottom: 12px; }
+        .perk-desc { font-size: 1.05rem; color: #a5a5a5; line-height: 1.5; }
+
+        /* FAQ Section */
+        .faq-section { width: 100%; max-width: 900px; padding: 0 5%; margin-bottom: 100px; }
+        .faq-item { background: rgba(10, 2, 20, 0.6); border: 1px solid rgba(138, 43, 226, 0.2); border-radius: 10px; margin-bottom: 15px; overflow: hidden; }
+        .faq-question {
+            width: 100%; padding: 20px 25px; background: transparent; border: none; color: #fff;
+            font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; text-align: left;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
+        }
+        .faq-question:hover { background: rgba(138, 43, 226, 0.1); }
+        .faq-question .icon { color: #8A2BE2; font-size: 1.5rem; transition: transform 0.3s; }
+        .faq-item.active .faq-question .icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 300px; }
+        .faq-answer p { padding: 0 25px 20px; color: #a5a5a5; font-size: 1.1rem; line-height: 1.6; }
+
+        /* CTA Section */
+        .cta-section {
+            width: 100%; background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(255, 215, 0, 0.05));
+            border-top: 1px solid rgba(255, 215, 0, 0.2); border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 80px 5%; text-align: center; margin-bottom: 0;
+        }
+        .cta-title { font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: #fff; margin-bottom: 20px; }
+        .cta-subtitle { font-size: 1.2rem; color: #d1b3ff; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-btn {
+            display: inline-block; padding: 20px 50px; background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 10px; color: #1a0a00; font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem; font-weight: 900; text-transform: uppercase; text-decoration: none;
+            letter-spacing: 2px; transition: all 0.4s; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+        .cta-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+
+        /* Footer */
         footer {
             width: 100%; background: rgba(5, 0, 10, 0.95); border-top: 1px solid rgba(138, 43, 226, 0.3);
             padding: 80px 5% 30px 5%; position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center;
@@ -221,19 +251,33 @@
         .copyright { color: #777; font-size: 1rem; }
         .sys-status { display: flex; align-items: center; gap: 10px; font-family: 'Fira Code', monospace; color: #a5a5a5; font-size: 0.95rem; }
         .status-dot { width: 10px; height: 10px; background: #27c93f; border-radius: 50%; box-shadow: 0 0 10px #27c93f; animation: blink 2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .version { background: rgba(138,43,226,0.1); border: 1px solid rgba(138,43,226,0.3); padding: 5px 12px; border-radius: 6px; color: #b388ff; font-family: 'Fira Code', monospace; }
 
-        /* Animații de Scroll Reveal */
+        /* Reveal Animation */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Media Queries Mobile */
+        /* Floating Discord Button */
+        .discord-floating-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+            background: rgba(138, 43, 226, 0.2); backdrop-filter: blur(10px);
+            border: 2px solid #8A2BE2; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            z-index: 1000; box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            transition: all 0.4s ease; animation: discordPulse 2s infinite; text-decoration: none;
+        }
+        .discord-floating-btn svg { width: 35px; height: 35px; fill: #ffffff; transition: all 0.4s ease; }
+        .discord-floating-btn:hover { background: #8A2BE2; transform: scale(1.15) translateY(-5px); box-shadow: 0 0 30px #8A2BE2, 0 0 60px #9932CC; animation: none; }
+        .discord-floating-btn:hover svg { transform: scale(1.1) rotate(-8deg); }
+        @keyframes discordPulse { 0%, 100% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.4); transform: scale(1); } 50% { box-shadow: 0 0 30px rgba(138, 43, 226, 0.8); transform: scale(1.05); } }
+
+        /* Mobile */
         @media (max-width: 768px) {
             nav { justify-content: center; flex-direction: column; gap: 15px; padding: 15px; }
             .nav-links { justify-content: center; }
             main { padding-top: 160px; }
-            .terminal { transform: none !important; }
-            .stats-container { grid-template-columns: 1fr; }
+            .comparison-table { font-size: 0.85rem; }
+            .comparison-table th, .comparison-table td { padding: 12px 8px; }
             .footer-bottom { justify-content: center; text-align: center; }
             .discord-floating-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
             .discord-floating-btn svg { width: 28px; height: 28px; }
@@ -245,6 +289,7 @@
     <div class="grid-bg"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
     <div id="particle-container"></div>
     
     <div class="cursor-glow" id="cursor-glow"></div>
@@ -256,160 +301,255 @@
             <a href="index.html">Home</a>
             <a href="commands.html">Commands</a>
             <a href="about.html">Engine</a>
+            <a href="premium.html" class="active">Premium</a>
             <a href="tos.html">T.O.S</a>
         </div>
     </nav>
 
     <main>
-        <!-- Secțiunea Hero -->
-        <div class="hero-section reveal active">
-            <h1 class="glitch-title">SYNTHEXIA</h1>
-            <div class="typewriter-container">
-                <span id="typewriter-text"></span><span class="cursor-blink">_</span>
-            </div>
-            
-            <div class="btn-container">
-                <a href="https://discord.com/oauth2/authorize?client_id=1511320585823588352&permissions=6755657571626102&integration_type=0&scope=bot+applications.commands" target="_blank" class="invite-btn">Initialize Connection</a>
-                <a href="commands.html" class="secondary-btn">View 1000+ Commands</a>
-            </div>
+        <!-- Hero Section -->
+        <div class="premium-hero reveal active">
+            <span class="premium-badge">⚡ Exclusive Access</span>
+            <h1 class="premium-title">Unlock Premium</h1>
+            <p class="premium-subtitle">Elevate your server to unprecedented heights. Gain access to exclusive commands, priority support, unlimited resources, and features that redefine domination.</p>
         </div>
 
-        <!-- Dashboard Terminal & Statistici Reale -->
-        <div class="dashboard-flex reveal">
-            <!-- Terminal 3D -->
-            <div class="terminal-wrapper">
-                <div class="terminal" id="tilt-terminal">
-                    <div class="terminal-header">
-                        <div class="dot dot-red"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div>
-                    </div>
-                    <div class="term-line">
-                        <span class="term-system">[System]:</span> Booting Neural Network OS_v4.5...
-                    </div>
-                    <div class="term-line">
-                        <span class="term-system">[System]:</span> Establishing secure link to 3,450 Servers... <span style="color:#27c93f;">[OK]</span>
-                    </div>
-                    <div class="term-line" style="margin-top: 15px;">
-                        <span class="term-user">Agent@Synthexia:~$</span> <span class="term-cmd">!global-scan</span>
-                    </div>
-                    <div class="term-line" style="border-left: 2px solid #8A2BE2; padding-left: 10px; margin-top: 10px;">
-                        <span class="term-output">Scanning Database...</span><br>
-                        <span class="term-output" style="color: #b388ff;">► Indexed Commands:</span> 1,000+ Native Protocols<br>
-                        <span class="term-output" style="color: #b388ff;">► Active Connections:</span> 452,108 Citizens<br>
-                        <span class="term-output" style="color: #b388ff;">► Processed Capital:</span> $84.2 Trillion USD
-                    </div>
-                    <div class="term-line" style="margin-top: 15px;">
-                        <span class="term-user">Agent@Synthexia:~$</span> <span class="term-cmd blink-cmd">_</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Statistici Live -->
-            <div class="live-stats-wrapper">
-                <div class="stat-box">
-                    <div class="stat-number count-up" data-target="3450">0</div>
-                    <div class="stat-label">Global Servers</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number count-up" data-target="452000">0</div>
-                    <div class="stat-label">Active Citizens</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number count-up" data-target="1000">0</div>
-                    <div class="stat-label">Native Commands</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">System Uptime</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Secțiunea Core Modules (Showcase Comenzi Principale) -->
-        <div class="showcase-section reveal">
-            <h2 class="section-title">Core Ecosystem Modules</h2>
-            <div class="showcase-grid">
+        <!-- Pricing Cards -->
+        <div class="pricing-section reveal">
+            <h2 class="section-title">Choose Your Protocol</h2>
+            <div class="pricing-grid">
                 
-                <!-- Card 1 -->
-                <div class="sc-card">
-                    <div class="sc-icon">🏙️</div>
-                    <h3 class="sc-title">Business & Real Estate</h3>
-                    <p class="sc-desc">Dominate the financial market. Buy luxury penthouses, establish corporate empires, and generate massive passive income.</p>
-                    <div class="sc-cmd-list">
-                        <div class="sc-cmd"><span class="cmd-name">!buy-estate [id]</span> <span class="cmd-badge">Public</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!hostile-takeover</span> <span class="cmd-badge" style="color:#ff5f56; border:1px solid #ff5f56;">Magnate</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!stock-market</span> <span class="cmd-badge">Invest</span></div>
+                <!-- Free Tier -->
+                <div class="price-card">
+                    <div class="card-tier">Citizen</div>
+                    <div class="card-price">
+                        <span class="currency">$</span><span class="amount">0</span><span class="period">/forever</span>
                     </div>
+                    <p class="card-desc">Access the core ecosystem with essential features for all users.</p>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> 500+ Base Commands</li>
+                        <li><span class="check">✓</span> Basic Economy System</li>
+                        <li><span class="check">✓</span> Standard Moderation</li>
+                        <li><span class="check">✓</span> Community Support</li>
+                        <li><span class="cross">✗</span> Premium Commands</li>
+                        <li><span class="cross">✗</span> Priority Queue</li>
+                        <li><span class="cross">✗</span> Custom Branding</li>
+                    </ul>
+                    <a href="[discord.com](https://discord.com/oauth2/authorize?client_id=1511320585823588352&permissions=6755657571626102&integration_type=0&scope=bot+applications.commands)" target="_blank" class="subscribe-btn">Get Started</a>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="sc-card">
-                    <div class="sc-icon">⚔️</div>
-                    <h3 class="sc-title">Tactical Warfare & Clans</h3>
-                    <p class="sc-desc">Found your own syndicate. Claim territories, wage war against rival factions, and protect your HQ with defense turrets.</p>
-                    <div class="sc-cmd-list">
-                        <div class="sc-cmd"><span class="cmd-name">!clan-create [name]</span> <span class="cmd-badge">Public</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!siege-start [id]</span> <span class="cmd-badge">Command</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!nuke-launch [clan]</span> <span class="cmd-badge" style="color:#ff5f56; border:1px solid #ff5f56;">Max Lvl</span></div>
+                <!-- Pro Tier -->
+                <div class="price-card featured">
+                    <div class="card-badge">Most Popular</div>
+                    <div class="card-tier">Syndicate</div>
+                    <div class="card-price">
+                        <span class="currency">$</span><span class="amount">9.99</span><span class="period">/month</span>
                     </div>
+                    <p class="card-desc">The perfect balance of power for growing communities.</p>
+                    <ul class="feature-list">
+                        <li><span class="star">★</span> All 1000+ Commands Unlocked</li>
+                        <li><span class="star">★</span> Advanced Economy + Crypto</li>
+                        <li><span class="star">★</span> Clan Warfare Systems</li>
+                        <li><span class="star">★</span> Priority Support (24h)</li>
+                        <li><span class="star">★</span> Custom Embed Colors</li>
+                        <li><span class="star">★</span> 2x XP & Currency Rates</li>
+                        <li><span class="cross">✗</span> White-Label Branding</li>
+                    </ul>
+                    <a href="[discord.gg](https://discord.gg/C9y9CyFpPG)" target="_blank" class="subscribe-btn">Subscribe Now</a>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="sc-card">
-                    <div class="sc-icon">🏎️</div>
-                    <h3 class="sc-title">Underground Racing</h3>
-                    <p class="sc-desc">Purchase 1000HP hypercars, tune your engines on the dyno, and race for pink slips while evading police heat.</p>
-                    <div class="sc-cmd-list">
-                        <div class="sc-cmd"><span class="cmd-name">!buy-car [id]</span> <span class="cmd-badge">Public</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!upgrade-engine</span> <span class="cmd-badge">Mechanic</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!pink-slip [@user]</span> <span class="cmd-badge">Racer</span></div>
+                <!-- Elite Tier -->
+                <div class="price-card">
+                    <div class="card-tier">Overlord</div>
+                    <div class="card-price">
+                        <span class="currency">$</span><span class="amount">24.99</span><span class="period">/month</span>
                     </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="sc-card">
-                    <div class="sc-icon">💻</div>
-                    <h3 class="sc-title">Tech, Crypto & Web3</h3>
-                    <p class="sc-desc">Build massive ASIC mining rigs, speculate on extreme crypto volatility, and execute cyber-attacks against hot wallets.</p>
-                    <div class="sc-cmd-list">
-                        <div class="sc-cmd"><span class="cmd-name">!rig-build [name]</span> <span class="cmd-badge">Public</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!crypto-buy [c] [q]</span> <span class="cmd-badge">Trader</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!hack [@user]</span> <span class="cmd-badge">Cyber</span></div>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="sc-card">
-                    <div class="sc-icon">🧬</div>
-                    <h3 class="sc-title">Bio-Genetics & Farming</h3>
-                    <p class="sc-desc">Incubate biological specimens, extract DNA, farm agricultural empires, and train digital pets for arena combat.</p>
-                    <div class="sc-cmd-list">
-                        <div class="sc-cmd"><span class="cmd-name">!plant [plot] [seed]</span> <span class="cmd-badge">Public</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!incubate [id]</span> <span class="cmd-badge">Breeder</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!duel-pet [@user]</span> <span class="cmd-badge">Champion</span></div>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="sc-card">
-                    <div class="sc-icon">🛡️</div>
-                    <h3 class="sc-title">Server Administration</h3>
-                    <p class="sc-desc">Deploy multi-layered verification systems, auto-moderation firewalls, and detailed audit logs for absolute security.</p>
-                    <div class="sc-cmd-list">
-                        <div class="sc-cmd"><span class="cmd-name">!set-prefix [prefix]</span> <span class="cmd-badge">Owner</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!verify-setup</span> <span class="cmd-badge">Admin</span></div>
-                        <div class="sc-cmd"><span class="cmd-name">!lockdown [on/off]</span> <span class="cmd-badge" style="color:#ff5f56; border:1px solid #ff5f56;">Admin</span></div>
-                    </div>
+                    <p class="card-desc">Absolute dominion. For servers that demand the pinnacle.</p>
+                    <ul class="feature-list">
+                        <li><span class="star">★</span> Everything in Syndicate</li>
+                        <li><span class="star">★</span> White-Label Bot Branding</li>
+                        <li><span class="star">★</span> Dedicated Support Agent</li>
+                        <li><span class="star">★</span> 5x XP & Currency Rates</li>
+                        <li><span class="star">★</span> Early Access to Features</li>
+                        <li><span class="star">★</span> Custom Command Creation</li>
+                        <li><span class="star">★</span> API Access for Integrations</li>
+                    </ul>
+                    <a href="[discord.gg](https://discord.gg/C9y9CyFpPG)" target="_blank" class="subscribe-btn">Contact Sales</a>
                 </div>
 
             </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section reveal">
+            <h2 class="section-title">Feature Comparison Matrix</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Citizen</th>
+                        <th class="gold">Syndicate</th>
+                        <th>Overlord</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Available Commands</td>
+                        <td>500+</td>
+                        <td>1000+</td>
+                        <td>1000+ & Custom</td>
+                    </tr>
+                    <tr>
+                        <td>Economy Multiplier</td>
+                        <td>1x</td>
+                        <td>2x</td>
+                        <td>5x</td>
+                    </tr>
+                    <tr>
+                        <td>Crypto Trading</td>
+                        <td><span class="icon-cross">✗</span></td>
+                        <td><span class="icon-check">✓</span></td>
+                        <td><span class="icon-star">★</span></td>
+                    </tr>
+                    <tr>
+                        <td>Clan Warfare</td>
+                        <td>Basic</td>
+                        <td>Advanced</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Support Response</td>
+                        <td>Community</td>
+                        <td>24 Hours</td>
+                        <td>Dedicated Agent</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Branding</td>
+                        <td><span class="icon-cross">✗</span></td>
+                        <td>Colors Only</td>
+                        <td><span class="icon-star">★</span> Full White-Label</td>
+                    </tr>
+                    <tr>
+                        <td>API Access</td>
+                        <td><span class="icon-cross">✗</span></td>
+                        <td><span class="icon-cross">✗</span></td>
+                        <td><span class="icon-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Early Feature Access</td>
+                        <td><span class="icon-cross">✗</span></td>
+                        <td><span class="icon-cross">✗</span></td>
+                        <td><span class="icon-star">★</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Perks Section -->
+        <div class="perks-section reveal">
+            <h2 class="section-title">Premium Advantages</h2>
+            <div class="perks-grid">
+                <div class="perk-card">
+                    <div class="perk-icon">🚀</div>
+                    <h3 class="perk-title">Priority Processing</h3>
+                    <p class="perk-desc">Skip the queue. Your commands execute with zero latency priority over standard users.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">💎</div>
+                    <h3 class="perk-title">Exclusive Commands</h3>
+                    <p class="perk-desc">Access 500+ premium-only commands including advanced heists, raids, and corporate takeovers.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">🛡️</div>
+                    <h3 class="perk-title">Enhanced Security</h3>
+                    <p class="perk-desc">Advanced anti-raid systems, verification protocols, and automated threat detection.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">📈</div>
+                    <h3 class="perk-title">Boosted Earnings</h3>
+                    <p class="perk-desc">Multiply your in-game currency and XP gains. Dominate the leaderboards faster.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">🎨</div>
+                    <h3 class="perk-title">Customization</h3>
+                    <p class="perk-desc">Custom embed colors, branded responses, and personalized bot identity for your server.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">🎧</div>
+                    <h3 class="perk-title">Priority Support</h3>
+                    <p class="perk-desc">Direct access to our support team with guaranteed response times and dedicated agents.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section reveal">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I activate Premium on my server?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>After subscribing, join our support Discord server and use the !claim command with your purchase confirmation. Premium features activate instantly on your linked server.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I transfer Premium to a different server?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! Syndicate tier allows one server transfer per month. Overlord tier includes unlimited transfers. Contact support to initiate a transfer.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards, PayPal, and select cryptocurrencies (BTC, ETH, LTC) through our secure payment portal.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is there a refund policy?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We offer a 7-day money-back guarantee for first-time subscribers. If you're not satisfied, contact support within the first week for a full refund.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Do Premium benefits stack with boosters?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely! Premium multipliers stack with in-game boosters and event bonuses. Overlord users can achieve up to 10x earning rates during special events.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Ascend?</h2>
+            <p class="cta-subtitle">Join thousands of elite server owners who have unlocked the full potential of Synthexia.</p>
+            <a href="[discord.gg](https://discord.gg/C9y9CyFpPG)" target="_blank" class="cta-btn">Upgrade Now</a>
         </div>
     </main>
 
-    <!-- Footer Profesional -->
+    <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <a href="#" class="footer-logo">SYNTHEXIA HQ</a>
+                <a href="index.html" class="footer-logo">SYNTHEXIA HQ</a>
                 <p>The ultimate 100% native Discord Engine. Operating without external APIs for zero latency and indestructible logic processing. Welcome to the future of community management and digital economies.</p>
             </div>
             <div class="footer-col">
@@ -418,13 +558,14 @@
                     <li><a href="index.html">Main Terminal</a></li>
                     <li><a href="commands.html">Command Directory (1000+)</a></li>
                     <li><a href="about.html">Engine Architecture</a></li>
+                    <li><a href="premium.html">Premium Access</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Legal & Support</h4>
                 <ul class="footer-links">
                     <li><a href="tos.html">Terms of Service</a></li>
-                    <li><a href="https://discord.gg/C9y9CyFpPG" target="_blank">Global Support Network</a></li>
+                    <li><a href="[discord.gg](https://discord.gg/C9y9CyFpPG)" target="_blank">Global Support Network</a></li>
                     <li><a href="#">Privacy Protocol</a></li>
                 </ul>
             </div>
@@ -438,8 +579,8 @@
         </div>
     </footer>
 
-    <!-- Buton Discord Plutitor -->
-    <a href="https://discord.gg/C9y9CyFpPG" target="_blank" title="Join Support Server" class="discord-floating-btn">
+    <!-- Discord Floating Button -->
+    <a href="[discord.gg](https://discord.gg/C9y9CyFpPG)" target="_blank" title="Join Support Server" class="discord-floating-btn">
         <svg viewBox="0 0 127.14 96.36">
             <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14c2.64-27.38-4.51-51.11-19.32-72.15ZM42.68,65.27c-5.36,0-9.72-4.86-9.72-10.84s4.28-10.84,9.72-10.84c5.45,0,9.76,4.86,9.72,10.84C52.4,60.41,48.13,65.27,42.68,65.27Zm41.71,0c-5.36,0-9.72-4.86-9.72-10.84s4.28-10.84,9.72-10.84c5.45,0,9.76,4.86,9.72,10.84C89.84,60.41,85.57,65.27,84.39,65.27Z"/>
         </svg>
@@ -466,9 +607,9 @@
             requestAnimationFrame(renderCursor);
         }
 
-        // 2. Particule Fulgi (Mai rare pentru vizibilitate curată)
+        // 2. Particles
         const container = document.getElementById('particle-container');
-        const particleCount = window.innerWidth > 768 ? 35 : 15; 
+        const particleCount = window.innerWidth > 768 ? 30 : 12; 
         for (let i = 0; i < particleCount; i++) {
             let sf = document.createElement('div'); sf.classList.add('snowflake');
             sf.style.width = sf.style.height = (Math.random() * 4 + 1) + 'px';
@@ -478,36 +619,7 @@
             container.appendChild(sf);
         }
 
-        // 3. Typewriter Effect Logic
-        const phrases = ["Dominate the Market.", "Command Your Syndicate.", "Extract the Code.", "The Absolute Pinnacle."];
-        let i = 0, j = 0, isDeleting = false;
-        const textTarget = document.getElementById("typewriter-text");
-
-        function loop() {
-            textTarget.innerHTML = phrases[i].substring(0, j);
-            if (!isDeleting && j < phrases[i].length) {
-                j++; setTimeout(loop, Math.random() * 40 + 40);
-            } else if (isDeleting && j > 0) {
-                j--; setTimeout(loop, 20);
-            } else if (j === phrases[i].length) {
-                isDeleting = true; setTimeout(loop, 2000);
-            } else if (j === 0) {
-                isDeleting = false; i = (i + 1) % phrases.length; setTimeout(loop, 500);
-            }
-        }
-        loop();
-
-        // 4. 3D Tilt Effect pentru Terminal (Doar Desktop)
-        if (window.matchMedia("(min-width: 768px)").matches) {
-            const terminal = document.getElementById('tilt-terminal');
-            document.addEventListener('mousemove', (e) => {
-                let xAxis = (window.innerWidth / 2 - e.pageX) / 60;
-                let yAxis = (window.innerHeight / 2 - e.pageY) / 60;
-                terminal.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            });
-        }
-
-        // 5. Animatii la Scroll (Contoare + elemente care apar treptat)
+        // 3. Scroll Reveal
         function revealElements() {
             const reveals = document.querySelectorAll('.reveal');
             for (let i = 0; i < reveals.length; i++) {
@@ -520,34 +632,20 @@
             }
         }
         window.addEventListener('scroll', revealElements);
-        revealElements(); // Initial call
+        revealElements();
 
-        // Contoare inteligente declansate la scroll
-        const counters = document.querySelectorAll('.count-up');
-        const counterObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = +entry.target.getAttribute('data-target');
-                    let count = 0;
-                    const formatNumber = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    
-                    const updateCount = () => {
-                        const increment = target / 40; 
-                        if (count < target) {
-                            count += increment;
-                            entry.target.innerText = formatNumber(Math.ceil(count)) + "+";
-                            setTimeout(updateCount, 30);
-                        } else {
-                            entry.target.innerText = formatNumber(target) + (target === 99.9 ? "%" : "+");
-                        }
-                    };
-                    updateCount();
-                    observer.unobserve(entry.target);
+        // 4. FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
                 }
             });
-        }, { threshold: 0.5 });
-
-        counters.forEach(counter => counterObserver.observe(counter));
+        });
     </script>
 </body>
 </html>
