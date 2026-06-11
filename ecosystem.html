@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Detailed Veyloria ecosystem page for the premium Discord economy system.">
+<title>Veyloria | Ecosystem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="28" fill="%23060B11"/><path d="M22 18h56L50 86z" fill="%2318F2B2"/><path d="M34 28l16 38 18-38" fill="none" stroke="%23ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<style>
+:root {
+  --emerald: #18F2B2;
+  --emerald-soft: rgba(24, 242, 178, .14);
+  --emerald-line: rgba(24, 242, 178, .30);
+  --gold: #E3B45B;
+  --violet: #7564FF;
+  --bg: #060B11;
+  --panel: rgba(12, 21, 31, .78);
+  --panel-strong: rgba(12, 22, 32, .92);
+  --line: rgba(255,255,255,.09);
+  --text: #F4FBFF;
+  --muted: #9DB1C7;
+  --soft: #D8E8F5;
+  --radius: 26px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(24,242,178,.15), transparent 30rem),
+    radial-gradient(circle at 88% 12%, rgba(117,100,255,.12), transparent 28rem),
+    radial-gradient(circle at 48% 100%, rgba(227,180,91,.07), transparent 28rem),
+    linear-gradient(135deg, #050A0F, #0A141E 52%, #060B11);
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+  opacity: .55;
+  z-index: 0;
+}
+a { color: inherit; text-decoration: none; }
+.container { width: min(1240px, calc(100% - 36px)); margin: 0 auto; position: relative; z-index: 2; }
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgba(24,242,178,.16);
+  background: rgba(5,10,15,.78);
+  backdrop-filter: blur(18px);
+}
+.nav-inner {
+  width: min(1240px, calc(100% - 36px));
+  margin: 0 auto;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 950; letter-spacing: -.04em; font-size: 1.28rem; }
+.brand-mark {
+  width: 42px; height: 42px; border-radius: 16px; display: grid; place-items: center;
+  color: #05120E; background: linear-gradient(135deg, #EFFFFA, var(--emerald) 42%, #087D5D);
+  box-shadow: 0 0 28px rgba(24,242,178,.34); font-weight: 950;
+}
+.nav-links { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.nav-links a {
+  color: var(--muted); font-size: .88rem; font-weight: 800; padding: 10px 12px; border-radius: 999px; transition: .2s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); background: rgba(24,242,178,.10); box-shadow: inset 0 0 0 1px rgba(24,242,178,.18); }
+
+.hero { padding: 84px 0 38px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; margin: 0 0 18px;
+  color: #BFFFF0; font-size: .78rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase;
+}
+.eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--emerald); box-shadow: 0 0 18px rgba(24,242,178,.7); }
+h1 { margin: 0; font-size: clamp(3.2rem, 7vw, 7rem); line-height: .9; letter-spacing: -.075em; }
+.gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 8%, #BFFFF0 34%, var(--emerald) 58%, #FFE2A0 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lead { margin: 24px 0 0; max-width: 940px; color: var(--soft); font-size: clamp(1.05rem, 1.55vw, 1.22rem); line-height: 1.75; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 20px;
+  border-radius: 15px; border: 1px solid rgba(255,255,255,.12); font-weight: 900; transition: .2s ease; box-shadow: 0 16px 36px rgba(0,0,0,.22);
+}
+.btn.primary { color: #03110D; background: linear-gradient(135deg, #EFFFFA, var(--emerald) 48%, #07A77A); border-color: rgba(255,255,255,.2); }
+.btn.secondary { color: var(--text); background: rgba(255,255,255,.045); }
+.btn:hover { transform: translateY(-2px); }
+
+.section { padding: 44px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 22px; }
+.section-title { margin: 0; font-size: clamp(2rem, 4vw, 3.45rem); letter-spacing: -.055em; line-height: 1; }
+.section-copy { margin: 12px 0 0; color: var(--muted); max-width: 850px; line-height: 1.72; font-size: 1.03rem; }
+
+.panel, .card, .module {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(16, 29, 42, .88), rgba(8, 16, 24, .72));
+  box-shadow: 0 22px 70px rgba(0,0,0,.30);
+}
+.panel { border-radius: var(--radius); }
+.panel::before, .card::before, .module::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 16% 0%, rgba(24,242,178,.10), transparent 26rem), radial-gradient(circle at 100% 0%, rgba(117,100,255,.08), transparent 24rem);
+  pointer-events: none;
+}
+.panel-inner, .card > *, .module > * { position: relative; z-index: 1; }
+.panel-inner { padding: 28px; }
+
+.grid { display: grid; gap: 18px; }
+.grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+.card { padding: 22px; border-radius: 22px; }
+.card-kicker { color: #AFFFF0; font-size: .75rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.card h3 { margin: 12px 0 10px; font-size: 1.22rem; letter-spacing: -.02em; }
+.card p { margin: 0; color: var(--muted); line-height: 1.66; }
+
+.architecture {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.layer {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.075);
+}
+.layer strong { display: block; margin-bottom: 8px; color: var(--text); }
+.layer span { color: var(--muted); line-height: 1.65; display: block; }
+
+.module { border-radius: 26px; margin-bottom: 18px; }
+.module-header {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 22px;
+  padding: 28px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.module-number {
+  display: flex; flex-direction: column; gap: 10px; justify-content: center;
+  min-height: 160px;
+  border-radius: 22px;
+  background: rgba(24,242,178,.08);
+  border: 1px solid rgba(24,242,178,.18);
+  padding: 20px;
+}
+.module-number span { color: #AFFFF0; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; }
+.module-number strong { font-size: 3rem; line-height: 1; letter-spacing: -.06em; }
+.module-title h3 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.6rem); letter-spacing: -.05em; }
+.module-title p { color: var(--soft); line-height: 1.72; font-size: 1.03rem; margin: 14px 0 0; }
+.module-body { padding: 24px 28px 28px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 18px; }
+.detail-box { padding: 18px; border-radius: 18px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.075); }
+.detail-box h4 { margin: 0 0 10px; color: var(--text); }
+.detail-box p { margin: 0; color: var(--muted); line-height: 1.66; }
+.command-pills { display: flex; flex-wrap: wrap; gap: 9px; }
+.pill {
+  display: inline-flex; align-items: center; padding: 8px 10px; border-radius: 999px;
+  color: #DFFFF7; background: rgba(24,242,178,.09); border: 1px solid rgba(24,242,178,.16);
+  font-family: "Fira Code", ui-monospace, monospace; font-size: .84rem; font-weight: 800;
+}
+.note {
+  color: var(--muted);
+  line-height: 1.75;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(227,180,91,.055);
+  border: 1px solid rgba(227,180,91,.16);
+}
+.footer { margin-top: 56px; border-top: 1px solid rgba(255,255,255,.09); background: rgba(4,8,12,.58); }
+.footer-grid { display: grid; grid-template-columns: 1.2fr repeat(3,.8fr); gap: 26px; padding: 48px 0; }
+.footer h4 { margin: 0 0 14px; }
+.footer p, .footer a { color: var(--muted); line-height: 1.7; }
+.footer a:hover { color: var(--emerald); }
+.footer-links { display: grid; gap: 9px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 18px 0 28px; display: flex; justify-content: space-between; gap: 14px; color: #7F93A8; font-size: .92rem; flex-wrap: wrap; }
+
+@media(max-width:1060px){
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3,.grid-2,.architecture,.module-body{grid-template-columns:1fr}
+  .module-header{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .nav-inner{align-items:flex-start;flex-direction:column;padding:14px 0}
+  .nav-links{justify-content:flex-start}
+  .hero{padding-top:46px}
+  .grid-4{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="brand-mark">V</span><span>Veyloria</span></a><div class="nav-links"><a class="" href="index.html">Home</a>
+<a class="active" href="ecosystem.html">Ecosystem</a>
+<a class="" href="commands.html">Commands</a>
+<a class="" href="docs.html">Docs</a>
+<a class="" href="premium.html">Premium</a>
+<a class="" href="support.html">Support</a>
+<a class="" href="status.html">Status</a></div></div></nav>
+<main>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Ecosystem architecture</p>
+      <h1><span class="gradient-text">A full economy structure, explained clearly.</span></h1>
+      <p class="lead">
+        Veyloria is designed as a layered economy ecosystem, not just a collection of individual commands.
+        The goal is to make every major part of the bot feel connected: setup creates the foundation, profiles give members identity,
+        banking stores value, income creates activity, markets move items, businesses create long-term growth, and support keeps the experience understandable.
+      </p>
+      <p class="lead">
+        This page is written as the public product overview for the ecosystem.
+        It explains what each system is supposed to do, how it fits into the wider economy and why it matters for a Discord community that wants a more polished economy experience.
+        The tone is intentionally practical and clear, so server owners can understand the product without needing to read the full command directory first.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1514297852954677441&permissions=2825027556208119&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">Invite Veyloria</a>
+        <a class="btn secondary" href="commands.html">View Command Directory</a>
+        <a class="btn secondary" href="https://discord.gg/2Trw25ZTxy" target="_blank" rel="noopener">Open Support Server</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel">
+        <div class="panel-inner">
+          <p class="eyebrow">Product logic</p>
+          <h2 class="section-title">The ecosystem is split into four practical layers.</h2>
+          <p class="section-copy">
+            Each layer has a different purpose. This keeps the website, the support server and the command directory easier to understand.
+            A new user can start with basic identity and money commands, while a server owner can focus on setup, logs, permissions and economy control.
+          </p>
+          <div class="architecture">
+            <div class="layer"><strong>Foundation layer</strong><span>Configuration, prefix, language, logs, module toggles, permissions, server setup and staff-only safety tools.</span></div>
+            <div class="layer"><strong>User economy layer</strong><span>Profiles, wallet, bank, income, jobs, rewards, inventory, achievements, reputation and visible progression.</span></div>
+            <div class="layer"><strong>Expansion layer</strong><span>Market, trading, auctions, businesses, properties, resources, crafting, clans, racing, farms and pets.</span></div>
+            <div class="layer"><strong>Product layer</strong><span>Premium access, official links, support tickets, documentation, policies, status information and community guidance.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">System modules</p>
+          <h2 class="section-title">Twelve major areas for the Veyloria experience.</h2>
+          <p class="section-copy">
+            The modules below are written as ecosystem descriptions, not as final implementation promises.
+            They show how the command catalogue can be presented on the website while keeping the language mature, detailed and product-focused.
+          </p>
+        </div>
+      </div>
+      
+    <article class="module" id="module-01">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>01</strong></div>
+        <div class="module-title">
+          <h3>Core Configuration</h3>
+          <p>The core layer is the administrative foundation of Veyloria. It covers prefix control, language direction, currency configuration, economy channels, logs, module toggles, command availability and server-level safety settings. This section exists so server owners can shape Veyloria around their community before members begin using economy features.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>Server owners and trusted administrators use this layer to configure how the bot behaves, where economy activity is allowed and how sensitive activity is logged. It should feel practical rather than technical, giving staff a clear first-run path and reducing setup mistakes.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!setup</span><span class="pill">v!prefix</span><span class="pill">v!setcurrency</span><span class="pill">v!module</span><span class="pill">v!setlog</span><span class="pill">v!setmarket</span><span class="pill">v!cooldowns</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-02">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>02</strong></div>
+        <div class="module-title">
+          <h3>Profile and Identity</h3>
+          <p>The identity layer gives each member a readable economic presence. Profiles, titles, badges, reputation, history, rank, achievements and comparison tools turn raw money into a long-term identity that other members can understand at a glance.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>This is the layer that makes progression visible. It should show who a user is inside the economy, what they have built, how trusted they are and how far they have progressed without making the interface feel crowded.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!start</span><span class="pill">v!profile</span><span class="pill">v!stats</span><span class="pill">v!title</span><span class="pill">v!badge</span><span class="pill">v!reputation</span><span class="pill">v!rank</span><span class="pill">v!history</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-03">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>03</strong></div>
+        <div class="module-title">
+          <h3>Wallet and Banking</h3>
+          <p>The banking layer manages the most important financial actions: wallet balance, bank storage, deposits, withdrawals, transfers, statements, net worth, limits and interest-style progression. It should be simple enough for new members and structured enough for advanced systems to depend on it.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>A stable banking layer protects the rest of the economy from feeling random. The user should understand where their money is, what is liquid, what is stored, what can be transferred and how their net worth is calculated.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!balance</span><span class="pill">v!wallet</span><span class="pill">v!bank</span><span class="pill">v!deposit</span><span class="pill">v!withdraw</span><span class="pill">v!pay</span><span class="pill">v!statement</span><span class="pill">v!networth</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-04">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>04</strong></div>
+        <div class="module-title">
+          <h3>Income and Careers</h3>
+          <p>The income layer gives users controlled ways to earn currency through daily rewards, weekly rewards, work, jobs, shifts, careers, tasks and cooldown-based progression. It should reward activity without turning the economy into uncontrolled inflation.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>Career systems can grow from simple commands into a structured progression path where better jobs, experience and time investment produce stronger rewards. Cooldowns and server configuration help keep this balanced.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!daily</span><span class="pill">v!weekly</span><span class="pill">v!work</span><span class="pill">v!job</span><span class="pill">v!jobs</span><span class="pill">v!career</span><span class="pill">v!payday</span><span class="pill">v!tasks</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-05">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>05</strong></div>
+        <div class="module-title">
+          <h3>Market and Commerce</h3>
+          <p>The market layer moves Veyloria beyond basic earning. Shops, buying, selling, market listings, auctions, bids, trades, receipts and price visibility give users a reason to interact with each other instead of only farming commands.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>A strong market system should feel transparent and readable. Members need to know what they are buying, who they are trading with, what the price means and how to review activity after the transaction.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!shop</span><span class="pill">v!buy</span><span class="pill">v!sell</span><span class="pill">v!market</span><span class="pill">v!marketbuy</span><span class="pill">v!auction</span><span class="pill">v!bid</span><span class="pill">v!trade</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-06">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>06</strong></div>
+        <div class="module-title">
+          <h3>Business and Estates</h3>
+          <p>The business layer is where long-term economy growth becomes more serious. Business creation, upgrades, collection, property ownership, rent, estates and asset growth can turn the economy into a slower strategic system rather than a quick reward loop.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>This section should be presented as advanced progression. Users who already understand wallet, bank and market systems can begin building assets that create identity, income and status over time.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!business</span><span class="pill">v!businesscreate</span><span class="pill">v!businesscollect</span><span class="pill">v!businessupgrade</span><span class="pill">v!property</span><span class="pill">v!properties</span><span class="pill">v!propertybuy</span><span class="pill">v!rent</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-07">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>07</strong></div>
+        <div class="module-title">
+          <h3>Resources and Crafting</h3>
+          <p>The resource layer gives the economy physical texture. Mining, fishing, farming, harvesting, crafting, recipes, energy and inventory actions help transform the bot from a bank simulator into an economy with materials, production and item movement.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>Crafting is especially useful because it creates demand for items and gives market systems more purpose. Resources can feed businesses, quests, upgrades, events and special collections.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!inventory</span><span class="pill">v!item</span><span class="pill">v!mine</span><span class="pill">v!fish</span><span class="pill">v!farm</span><span class="pill">v!harvest</span><span class="pill">v!craft</span><span class="pill">v!recipes</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-08">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>08</strong></div>
+        <div class="module-title">
+          <h3>Clans, Factions and Competition</h3>
+          <p>The social competition layer gives groups a reason to organize. Factions, clans, clan creation, wars, raids, reputation, leaderboards and team-based rivalry can make the economy feel alive without relying only on individual balances.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>This layer should be controlled carefully because competitive systems can create strong engagement but also need clear rules, cooldowns and anti-abuse protection. It works best when tied to leaderboards, rewards and visible progression.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!faction</span><span class="pill">v!factioncreate</span><span class="pill">v!clan</span><span class="pill">v!clancreate</span><span class="pill">v!raid</span><span class="pill">v!war</span><span class="pill">v!top</span><span class="pill">v!compare</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-09">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>09</strong></div>
+        <div class="module-title">
+          <h3>Garage, Racing and Transport</h3>
+          <p>The garage layer adds lifestyle progression through vehicles, racing, upgrades, routes and transport-based status. It gives users another long-term collection path that can connect to market value, events and public competition.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>Racing and transport systems should feel optional but meaningful. They can support leaderboards, betting limits, car collections, route bonuses and future prestige paths without becoming mandatory for every user.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!garage</span><span class="pill">v!carbuy</span><span class="pill">v!race</span><span class="pill">v!racejoin</span><span class="pill">v!route</span><span class="pill">v!vehicle</span><span class="pill">v!upgrade</span><span class="pill">v!leaderboard</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-10">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>10</strong></div>
+        <div class="module-title">
+          <h3>Farming, Pets and Genetics</h3>
+          <p>The living ecosystem layer includes farming, pets, pet shops, eggs, feeding, training, genetics and collection-based progression. It adds a softer but still strategic side to the economy, useful for players who enjoy growth systems and collectibles.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>Pets and farms can become strong retention systems because they give members something to maintain over time. They can also connect to crafting, events, competitions, market items and profile identity.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!farm</span><span class="pill">v!harvest</span><span class="pill">v!pet</span><span class="pill">v!petshop</span><span class="pill">v!petbuy</span><span class="pill">v!petfeed</span><span class="pill">v!pettrain</span><span class="pill">v!incubate</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-11">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>11</strong></div>
+        <div class="module-title">
+          <h3>Audit, Admin and Economy Control</h3>
+          <p>The control layer is for staff and owners. It covers economy logs, item creation, price edits, event starts, reward roles, tax settings, bank limits, backups, blacklists and global safety actions needed to keep a large economy under control.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>These tools should be protected behind staff permissions. They are not part of the public game loop; they exist so the server can recover from mistakes, adjust balance and review suspicious activity.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!audit</span><span class="pill">v!itemcreate</span><span class="pill">v!priceset</span><span class="pill">v!eventstart</span><span class="pill">v!rewardrole</span><span class="pill">v!taxset</span><span class="pill">v!backup</span><span class="pill">v!blacklist</span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module" id="module-12">
+      <div class="module-header">
+        <div class="module-number"><span>Module</span><strong>12</strong></div>
+        <div class="module-title">
+          <h3>Premium, Support and Public Trust</h3>
+          <p>The product layer surrounds the bot with a proper support experience. Premium information, perks, support tickets, documentation, community guidelines, status notices and official links make the bot feel safer and more reliable for communities.</p>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="detail-box">
+          <h4>How it should feel in the product</h4>
+          <p>This is what makes Veyloria feel like a product rather than a command pack. Users should know where to get help, how premium works, what rules apply and which links are official.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Example command direction</h4>
+          <div class="command-pills"><span class="pill">v!premium</span><span class="pill">v!vipperks</span><span class="pill">v!ticket</span><span class="pill">v!report</span><span class="pill">v!suggest</span><span class="pill">v!status</span><span class="pill">v!docs</span><span class="pill">v!invite</span></div>
+        </div>
+      </div>
+    </article>
+    
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        <article class="card">
+          <span class="card-kicker">For members</span>
+          <h3>Start with profile, wallet and bank.</h3>
+          <p>Members should understand their account before using advanced modules. A clear profile, stable balance view and simple banking flow make every later system easier to learn.</p>
+        </article>
+        <article class="card">
+          <span class="card-kicker">For server owners</span>
+          <h3>Configure before launching publicly.</h3>
+          <p>Owners should prepare economy channels, logs, permissions, roles, support paths and command availability before members begin using the economy heavily.</p>
+        </article>
+        <article class="card">
+          <span class="card-kicker">For staff</span>
+          <h3>Keep support and audit visible.</h3>
+          <p>Staff should have clear places for ticket review, bug reports, suspicious economy activity, moderation logs and configuration notes so issues can be handled without confusion.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel">
+        <div class="panel-inner">
+          <p class="eyebrow">Next page</p>
+          <h2 class="section-title">The command directory can now become expandable.</h2>
+          <p class="section-copy">
+            With the ecosystem page complete, the next step is the command directory.
+            That page should include search, category filters and expandable command cards. When a user clicks a command, the card should open a detailed explanation with purpose, access level, usage example, required permissions and practical notes.
+            This will make the command list feel like real documentation instead of a simple table.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="commands.html">Prepare Commands Page</a>
+            <a class="btn secondary" href="docs.html">Open Documentation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">V</span><span>Veyloria</span></a><p>Veyloria is presented as a premium economy ecosystem for Discord communities that want structured progression, reliable support information and a cleaner product experience around configuration, banking, markets and long-term server growth.</p></div><div><h4>Product</h4><div class="footer-links"><a href="ecosystem.html">Ecosystem</a><a href="commands.html">Command Directory</a><a href="docs.html">Documentation</a><a href="premium.html">Premium Access</a></div></div><div><h4>Support</h4><div class="footer-links"><a href="https://discord.gg/2Trw25ZTxy" target="_blank" rel="noopener">Support Server</a><a href="support.html">Support Center</a><a href="status.html">Status</a><a href="support-policy.html">Support Policy</a></div></div><div><h4>Legal</h4><div class="footer-links"><a href="tos.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="community-guidelines.html">Community Guidelines</a></div></div></div><div class="footer-bottom"><span>© 2026 Veyloria. All rights reserved.</span><span>Official color: #18F2B2 • Prefix: v! • Currency: VL$</span></div></div></footer>
+</body>
+</html>
