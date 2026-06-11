@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Veyloria documentation for setup, permissions, economy configuration, command usage and support flow.">
+<title>Veyloria | Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="28" fill="%23060B11"/><path d="M22 18h56L50 86z" fill="%2318F2B2"/><path d="M34 28l16 38 18-38" fill="none" stroke="%23ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<style>
+:root{--emerald:#18F2B2;--gold:#E3B45B;--violet:#7564FF;--bg:#060B11;--text:#F4FBFF;--muted:#9DB1C7;--soft:#D8E8F5;--line:rgba(255,255,255,.09);--radius:26px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(24,242,178,.15),transparent 30rem),radial-gradient(circle at 88% 10%,rgba(117,100,255,.12),transparent 28rem),radial-gradient(circle at 48% 100%,rgba(227,180,91,.07),transparent 28rem),linear-gradient(135deg,#050A0F,#0A141E 52%,#060B11);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(circle at center,black 0%,transparent 78%);opacity:.55;z-index:0}a{color:inherit;text-decoration:none}.container{width:min(1240px,calc(100% - 36px));margin:0 auto;position:relative;z-index:2}.nav{position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(24,242,178,.16);background:rgba(5,10,15,.78);backdrop-filter:blur(18px)}.nav-inner{width:min(1240px,calc(100% - 36px));margin:0 auto;min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:950;letter-spacing:-.04em;font-size:1.28rem}.brand-mark{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;color:#05120E;background:linear-gradient(135deg,#EFFFFA,var(--emerald) 42%,#087D5D);box-shadow:0 0 28px rgba(24,242,178,.34);font-weight:950}.nav-links{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.nav-links a{color:var(--muted);font-size:.88rem;font-weight:800;padding:10px 12px;border-radius:999px;transition:.2s}.nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(24,242,178,.10);box-shadow:inset 0 0 0 1px rgba(24,242,178,.18)}.hero{padding:84px 0 38px}.eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:#BFFFF0;font-size:.78rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:28px;height:2px;background:var(--emerald);box-shadow:0 0 18px rgba(24,242,178,.7)}h1{margin:0;font-size:clamp(3.2rem,7vw,7rem);line-height:.9;letter-spacing:-.075em}.gradient-text{background:linear-gradient(135deg,#fff 8%,#BFFFF0 34%,var(--emerald) 58%,#FFE2A0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{margin:24px 0 0;max-width:960px;color:var(--soft);font-size:clamp(1.05rem,1.55vw,1.22rem);line-height:1.75}.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 20px;border-radius:15px;border:1px solid rgba(255,255,255,.12);font-weight:900;transition:.2s;box-shadow:0 16px 36px rgba(0,0,0,.22);cursor:pointer}.btn.primary{color:#03110D;background:linear-gradient(135deg,#EFFFFA,var(--emerald) 48%,#07A77A);border-color:rgba(255,255,255,.2)}.btn.secondary{color:var(--text);background:rgba(255,255,255,.045)}.btn:hover{transform:translateY(-2px)}.section{padding:34px 0}.docs-layout{display:grid;grid-template-columns:270px 1fr;gap:22px;align-items:start}.sidebar{position:sticky;top:98px;border:1px solid rgba(255,255,255,.09);border-radius:22px;background:rgba(12,21,31,.72);padding:14px}.sidebar a{display:block;color:var(--muted);font-weight:850;padding:10px 12px;border-radius:14px;transition:.2s}.sidebar a:hover,.sidebar a.active{color:var(--text);background:rgba(24,242,178,.10);box-shadow:inset 0 0 0 1px rgba(24,242,178,.16)}.doc-section{scroll-margin-top:110px;margin-bottom:24px}.doc-card,.step,.callout,.accordion{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,rgba(16,29,42,.88),rgba(8,16,24,.72));box-shadow:0 22px 70px rgba(0,0,0,.30)}.doc-card{border-radius:26px;padding:26px}.doc-card:before,.step:before,.callout:before,.accordion:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 16% 0%,rgba(24,242,178,.10),transparent 26rem),radial-gradient(circle at 100% 0%,rgba(117,100,255,.08),transparent 24rem);pointer-events:none}.doc-card>*,.step>*,.callout>*,.accordion>*{position:relative;z-index:1}.doc-card h2{margin:0 0 14px;font-size:clamp(1.7rem,3vw,2.55rem);letter-spacing:-.045em}.doc-card h3{margin:24px 0 8px;font-size:1.24rem}.doc-card p{color:var(--muted);line-height:1.75;margin:0 0 14px}.grid{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.step{border-radius:22px;padding:20px}.step-number{display:inline-flex;width:38px;height:38px;border-radius:14px;align-items:center;justify-content:center;color:#03110D;background:var(--emerald);font-weight:950;margin-bottom:14px}.step h3{margin:0 0 10px;font-size:1.18rem}.step p{margin:0;color:var(--muted);line-height:1.66}.code{display:block;white-space:pre-wrap;word-break:break-word;font-family:"Fira Code",ui-monospace,monospace;color:#EFFFFA;background:rgba(0,0,0,.32);border:1px solid rgba(24,242,178,.16);border-radius:18px;padding:16px;margin:14px 0}.inline-code{font-family:"Fira Code",ui-monospace,monospace;color:#EFFFFA;background:rgba(24,242,178,.10);border:1px solid rgba(24,242,178,.16);border-radius:8px;padding:2px 6px}.table-wrap{overflow:auto;border:1px solid rgba(255,255,255,.09);border-radius:18px;margin-top:14px}table{width:100%;border-collapse:collapse;min-width:680px}th,td{padding:14px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;vertical-align:top}th{color:#BFFFF0;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;background:rgba(24,242,178,.07)}td{color:var(--muted);line-height:1.55}td strong{color:var(--text)}.checklist{display:grid;gap:10px;margin-top:12px}.check{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid rgba(255,255,255,.075);border-radius:16px;background:rgba(255,255,255,.032);color:var(--muted);line-height:1.55}.check:before{content:"";width:12px;height:12px;flex:0 0 12px;border-radius:50%;margin-top:5px;background:var(--emerald);box-shadow:0 0 16px rgba(24,242,178,.42)}.callout{border-radius:22px;padding:20px;border-color:rgba(227,180,91,.18);background:linear-gradient(180deg,rgba(227,180,91,.07),rgba(8,16,24,.72))}.callout strong{display:block;margin-bottom:8px;color:#FFE2A0}.callout p{margin:0;color:var(--muted);line-height:1.66}.accordion{border-radius:20px;margin-bottom:10px}.acc-btn{width:100%;padding:17px 18px;background:transparent;border:0;color:var(--text);font-weight:950;text-align:left;cursor:pointer;display:flex;justify-content:space-between;gap:12px}.acc-btn span{color:var(--emerald)}.acc-body{display:none;padding:0 18px 18px;color:var(--muted);line-height:1.7}.accordion.open .acc-body{display:block}.footer{margin-top:56px;border-top:1px solid rgba(255,255,255,.09);background:rgba(4,8,12,.58)}.footer-grid{display:grid;grid-template-columns:1.2fr repeat(3,.8fr);gap:26px;padding:48px 0}.footer h4{margin:0 0 14px}.footer p,.footer a{color:var(--muted);line-height:1.7}.footer a:hover{color:var(--emerald)}.footer-links{display:grid;gap:9px}.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:18px 0 28px;display:flex;justify-content:space-between;gap:14px;color:#7F93A8;font-size:.92rem;flex-wrap:wrap}@media(max-width:1060px){.docs-layout{grid-template-columns:1fr}.sidebar{position:relative;top:auto}.grid-3,.grid-2{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}@media(max-width:680px){.nav-inner{align-items:flex-start;flex-direction:column;padding:14px 0}.nav-links{justify-content:flex-start}.hero{padding-top:46px}.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">V</span><span>Veyloria</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="ecosystem.html">Ecosystem</a>
+      <a href="commands.html">Commands</a>
+      <a class="active" href="docs.html">Docs</a>
+      <a href="premium.html">Premium</a>
+      <a href="support.html">Support</a>
+      <a href="status.html">Status</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Documentation</p>
+    <h1><span class="gradient-text">Set up Veyloria with confidence.</span></h1>
+    <p class="lead">This documentation page is written for server owners, administrators and support staff who want to launch Veyloria in a clean and controlled way. It explains the recommended setup flow, permissions, channel structure, economy configuration, module launch order and support expectations before members begin using the bot heavily.</p>
+    <p class="lead">The goal is to keep the product experience clear. Veyloria should not feel like a bot that was dropped into a server without context; it should feel like a system that has been configured, explained and connected to the support hub properly.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1514297852954677441&permissions=2825027556208119&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">Invite Veyloria</a>
+      <a class="btn secondary" href="https://discord.gg/2Trw25ZTxy" target="_blank" rel="noopener">Open Support Server</a>
+      <a class="btn secondary" href="commands.html">Command Directory</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container docs-layout">
+    <aside class="sidebar" aria-label="Documentation navigation">
+      <a href="#quick-start">Quick Start</a>
+      <a href="#permissions">Permissions</a>
+      <a href="#channels">Channel Setup</a>
+      <a href="#configuration">Configuration</a>
+      <a href="#launch-order">Launch Order</a>
+      <a href="#modules">Module Guide</a>
+      <a href="#support-flow">Support Flow</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#checklist">Final Checklist</a>
+    </aside>
+
+    <div>
+      <section class="doc-section" id="quick-start">
+        <article class="doc-card">
+          <p class="eyebrow">Quick start</p>
+          <h2>From invite to first working setup.</h2>
+          <p>Start by inviting Veyloria with the official invite link, then place the bot role high enough in the role hierarchy for the actions it needs to perform. The bot does not need to sit above staff roles unless it is expected to manage roles below them, but it must be above any role it needs to assign, remove or check in controlled systems.</p>
+          <p>After the bot joins, create or verify the channels used for economy commands, logs, support, reports and documentation. Do not open every module immediately. A cleaner launch starts with setup, profile, wallet, bank and basic income before advanced systems such as market, business, clans, racing or pets are made public.</p>
+          <div class="grid grid-3">
+            <div class="step"><div class="step-number">1</div><h3>Invite the bot</h3><p>Use the official invite button and make sure the server owner or a trusted administrator completes the authorization.</p></div>
+            <div class="step"><div class="step-number">2</div><h3>Place the role</h3><p>Move the Veyloria role above the member roles it needs to manage, while keeping owner and staff roles protected.</p></div>
+            <div class="step"><div class="step-number">3</div><h3>Run setup</h3><p>Use the setup and configuration commands before allowing members to use the economy publicly.</p></div>
+          </div>
+          <code class="code">Recommended first commands:
+v!setup
+v!permissions
+v!config
+v!setchannel #bot-commands
+v!setlog #economy-logs</code>
+        </article>
+      </section>
+
+      <section class="doc-section" id="permissions">
+        <article class="doc-card">
+          <p class="eyebrow">Permissions</p>
+          <h2>Give enough access to work, not enough to become unsafe.</h2>
+          <p>Veyloria should have the permissions needed to send readable messages, use application commands, read command context, create support responses and display embeds. If your server uses role panels, ticket panels or controlled access roles, the bot role must also be above the roles it is expected to manage.</p>
+          <p>Avoid giving Administrator by default. Administrator is convenient, but it makes troubleshooting harder and gives more power than most economy features require. A professional setup uses specific permissions and keeps dangerous capabilities limited to trusted staff workflows.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Permission</th><th>Recommended</th><th>Reason</th></tr></thead>
+              <tbody>
+                <tr><td><strong>View Channels</strong></td><td>Required</td><td>Needed so Veyloria can read and respond inside configured bot, support and log channels.</td></tr>
+                <tr><td><strong>Send Messages</strong></td><td>Required</td><td>Needed for command responses, support instructions and public panels.</td></tr>
+                <tr><td><strong>Embed Links</strong></td><td>Required</td><td>Recommended for clean economy cards, profiles, logs and documentation style responses.</td></tr>
+                <tr><td><strong>Read Message History</strong></td><td>Recommended</td><td>Useful for context, moderation, support and interaction-heavy channels.</td></tr>
+                <tr><td><strong>Use Application Commands</strong></td><td>Required</td><td>Required if slash commands or application command interactions are used.</td></tr>
+                <tr><td><strong>Manage Roles</strong></td><td>Conditional</td><td>Only needed if Veyloria assigns verification, language, ping, premium or access roles.</td></tr>
+                <tr><td><strong>Manage Messages</strong></td><td>Conditional</td><td>Useful for moderation or cleanup systems, but should not be enabled unless those modules are used.</td></tr>
+                <tr><td><strong>Administrator</strong></td><td>Not recommended by default</td><td>Only use temporarily for testing if needed, then replace it with explicit permissions.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout"><strong>Role hierarchy matters</strong><p>If a role command does not work, the most common cause is not the command itself. Check whether the Veyloria role is above the role it is trying to manage.</p></div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="channels">
+        <article class="doc-card">
+          <p class="eyebrow">Channel setup</p>
+          <h2>Prepare the server before members start using the economy.</h2>
+          <p>A clean Veyloria server should separate public information, command usage, logs, reports and staff review. This prevents members from running economy commands inside rules or announcements, keeps logs readable and makes support cases easier to investigate.</p>
+          <div class="grid grid-2">
+            <div class="step"><div class="step-number">A</div><h3>Public command channel</h3><p>Use a dedicated channel such as <span class="inline-code">#bot-commands</span> for normal member commands. This keeps the rest of the server clean.</p></div>
+            <div class="step"><div class="step-number">B</div><h3>Economy logs</h3><p>Create <span class="inline-code">#economy-logs</span> for important financial actions, staff corrections, trades, suspicious activity and module changes.</p></div>
+            <div class="step"><div class="step-number">C</div><h3>Support area</h3><p>Use tickets or support channels for setup issues, premium questions, command problems and private server-specific cases.</p></div>
+            <div class="step"><div class="step-number">D</div><h3>Documentation area</h3><p>Keep guides, FAQ, official links and known issues visible so members do not open tickets for questions already answered.</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="configuration">
+        <article class="doc-card">
+          <p class="eyebrow">Configuration</p>
+          <h2>The first configuration should be simple and stable.</h2>
+          <p>Do not configure every advanced module at once. Start with the base economy and verify that users can create profiles, view balances, deposit money, withdraw money and claim basic rewards. Once the base works, add market, business, resources and progression modules gradually.</p>
+          <code class="code">Suggested baseline:
+Prefix: v!
+Currency name: Veyl
+Currency symbol: VL$
+Command channel: #bot-commands
+Economy logs: #economy-logs
+Support path: ticket system or support hub
+Public modules: profile, balance, bank, daily, work
+Locked modules at launch: market, business, clans, racing, pets</code>
+          <p>After the baseline is stable, server staff can decide whether to open more advanced systems immediately or treat them as staged releases. A staged release is usually cleaner because it gives members time to understand the economy before complex trading, business and competition systems become active.</p>
+        </article>
+      </section>
+
+      <section class="doc-section" id="launch-order">
+        <article class="doc-card">
+          <p class="eyebrow">Launch order</p>
+          <h2>Recommended module release path.</h2>
+          <p>A good economy launch avoids overwhelming users. Start with identity and simple money movement, then add active income, then market systems, then long-term progression. This helps staff detect issues early and prevents the economy from becoming chaotic on the first day.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Stage</th><th>Modules</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Stage 1</strong></td><td>Profile, wallet, bank, daily, work</td><td>Gives users the basic economy loop and lets staff confirm that balances are stable.</td></tr>
+                <tr><td><strong>Stage 2</strong></td><td>Inventory, shop, pay, net worth, statements</td><td>Adds item ownership, transfers and basic tracking without introducing complex markets yet.</td></tr>
+                <tr><td><strong>Stage 3</strong></td><td>Market, auctions, trading, price checks</td><td>Opens user-to-user economy movement and requires stronger logs and support readiness.</td></tr>
+                <tr><td><strong>Stage 4</strong></td><td>Business, properties, jobs, careers</td><td>Adds long-term income and advanced progression once the economy base is stable.</td></tr>
+                <tr><td><strong>Stage 5</strong></td><td>Clans, racing, crafting, farms, pets</td><td>Expands the ecosystem into competition, lifestyle systems and collection paths.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="modules">
+        <article class="doc-card">
+          <p class="eyebrow">Module guide</p>
+          <h2>What each major area is for.</h2>
+          <p>Veyloria is easier to understand when every major command group has a clear purpose. The command directory contains the full list, while this documentation explains the role of each module at a higher level.</p>
+          <div class="grid grid-2">
+            <div class="step"><div class="step-number">1</div><h3>Core and Utils</h3><p>Server setup, configuration, premium checks, system status, utilities, safety tools and staff-level setup commands.</p></div>
+            <div class="step"><div class="step-number">2</div><h3>Basic and Economy</h3><p>Wallet, bank, daily income, inventory, shop, social actions, market entry and common user economy actions.</p></div>
+            <div class="step"><div class="step-number">3</div><h3>Career and Academy</h3><p>Jobs, education, career progression, certifications and long-term income identity.</p></div>
+            <div class="step"><div class="step-number">4</div><h3>Business and Estates</h3><p>Business ownership, passive income, properties, rent, upgrades and asset growth.</p></div>
+            <div class="step"><div class="step-number">5</div><h3>Tech and Crypto</h3><p>Advanced systems around digital assets, crypto-style risk, mining infrastructure and speculative economy mechanics.</p></div>
+            <div class="step"><div class="step-number">6</div><h3>Clans and Warfare</h3><p>Group progression, clans, shared resources, rivalries, raids and competitive server identity.</p></div>
+            <div class="step"><div class="step-number">7</div><h3>Crafting and Architecture</h3><p>Resource extraction, blueprints, building, crafting and production systems connected to the market.</p></div>
+            <div class="step"><div class="step-number">8</div><h3>Garage and Racing</h3><p>Vehicles, upgrades, racing, routes and lifestyle progression around transport systems.</p></div>
+            <div class="step"><div class="step-number">9</div><h3>Ecosystem and Farm</h3><p>Agriculture, land, livestock, harvesting and slower production loops for long-term players.</p></div>
+            <div class="step"><div class="step-number">10</div><h3>Genetics and Pets</h3><p>Pets, training, incubation, genetics, companions and collection-based progression.</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="support-flow">
+        <article class="doc-card">
+          <p class="eyebrow">Support flow</p>
+          <h2>How users should ask for help.</h2>
+          <p>Support is faster when the user provides context from the beginning. A ticket that only says “the bot does not work” is not enough. A useful report explains the command, the expected result, the actual result, the channel where it happened and whether the issue happens once or every time.</p>
+          <code class="code">Recommended support format:
+Command:
+What I expected:
+What happened:
+Channel:
+Server setup change before issue:
+Screenshot or error text:
+Does it happen every time:</code>
+          <p>Public questions should stay in community help if they are simple and not private. Tickets should be used for server-specific configuration, premium access, suspicious activity, data corrections or issues that require staff review.</p>
+          <div class="callout"><strong>Safety reminder</strong><p>Support should never require Discord tokens, bot tokens, passwords, recovery codes, payment credentials, hosting credentials or private keys. If someone asks for those, do not continue the conversation and report it through the official support server.</p></div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="troubleshooting">
+        <article class="doc-card">
+          <p class="eyebrow">Troubleshooting</p>
+          <h2>Common problems and what to check first.</h2>
+          <div class="accordion"><button class="acc-btn" type="button">The bot does not respond <span>Open</span></button><div class="acc-body">Check whether Veyloria can view the channel, send messages, embed links and use application commands. Also confirm that commands are being used in the configured command channel if the server restricts economy usage.</div></div>
+          <div class="accordion"><button class="acc-btn" type="button">Role buttons or role commands do not work <span>Open</span></button><div class="acc-body">Check the role hierarchy first. The Veyloria role must be above the roles it is trying to assign or remove. Also verify that the bot has Manage Roles permission only if role management is required.</div></div>
+          <div class="accordion"><button class="acc-btn" type="button">Slash commands do not appear <span>Open</span></button><div class="acc-body">Make sure the bot was invited with the applications.commands scope and that the server has allowed the command integration. Sometimes application commands also need time to sync.</div></div>
+          <div class="accordion"><button class="acc-btn" type="button">Economy commands are blocked <span>Open</span></button><div class="acc-body">Check whether the economy module is enabled, whether the command channel restriction is active and whether the user has started their profile with the required start command.</div></div>
+          <div class="accordion"><button class="acc-btn" type="button">Balances or assets look wrong <span>Open</span></button><div class="acc-body">Review the statement or economy logs if available. Staff should check recent transfers, purchases, admin corrections, market actions and any module changes before assuming data is broken.</div></div>
+          <div class="accordion"><button class="acc-btn" type="button">Premium access is missing <span>Open</span></button><div class="acc-body">Check whether the user has the correct premium role, whether premium access is connected to the correct server and whether the premium information page has the final activation process.</div></div>
+        </article>
+      </section>
+
+      <section class="doc-section" id="checklist">
+        <article class="doc-card">
+          <p class="eyebrow">Final checklist</p>
+          <h2>Before announcing Veyloria publicly.</h2>
+          <p>Use this checklist before making the bot available to all members. A careful setup prevents most support problems and makes the first impression much better.</p>
+          <div class="checklist">
+            <div class="check">The official invite link has been tested by the server owner or a trusted administrator.</div>
+            <div class="check">The Veyloria role is high enough to manage only the roles it actually needs.</div>
+            <div class="check">The bot can view, send messages, embed links and use application commands in the correct channels.</div>
+            <div class="check">Economy commands are restricted to the correct bot command channel if the server uses restrictions.</div>
+            <div class="check">Economy logs, moderation logs and support ticket areas are prepared before public launch.</div>
+            <div class="check">The baseline economy modules have been tested: profile, balance, bank, deposit, withdraw, daily and work.</div>
+            <div class="check">Advanced modules such as market, business, clans, racing and pets are either tested or intentionally locked for later release.</div>
+            <div class="check">Rules, support policy, community guidelines, privacy policy and terms pages are linked from the website and support server.</div>
+            <div class="check">Staff knows how to handle reports, suspicious activity, premium questions and configuration issues.</div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="commands.html">Open Command Directory</a>
+            <a class="btn secondary" href="ecosystem.html">View Ecosystem</a>
+            <a class="btn secondary" href="https://discord.gg/2Trw25ZTxy" target="_blank" rel="noopener">Support Server</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">V</span><span>Veyloria</span></a><p>Veyloria is presented as a premium economy ecosystem for Discord communities that want structured progression, reliable support information and a cleaner product experience around configuration, banking, markets and long-term server growth.</p></div><div><h4>Product</h4><div class="footer-links"><a href="ecosystem.html">Ecosystem</a><a href="commands.html">Command Directory</a><a href="docs.html">Documentation</a><a href="premium.html">Premium Access</a></div></div><div><h4>Support</h4><div class="footer-links"><a href="https://discord.gg/2Trw25ZTxy" target="_blank" rel="noopener">Support Server</a><a href="support.html">Support Center</a><a href="status.html">Status</a><a href="support-policy.html">Support Policy</a></div></div><div><h4>Legal</h4><div class="footer-links"><a href="tos.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="community-guidelines.html">Community Guidelines</a></div></div></div><div class="footer-bottom"><span>© 2026 Veyloria. All rights reserved.</span><span>Official color: #18F2B2 • Prefix: v! • Currency: VL$</span></div></div></footer>
+
+<script>
+const acc = document.querySelectorAll('.accordion');
+acc.forEach(item => {
+  const btn = item.querySelector('.acc-btn');
+  btn.addEventListener('click', () => {
+    item.classList.toggle('open');
+    const span = btn.querySelector('span');
+    span.textContent = item.classList.contains('open') ? 'Close' : 'Open';
+  });
+});
+
+const links = document.querySelectorAll('.sidebar a');
+const sections = [...links].map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+function markActive(){
+  let current = sections[0]?.id;
+  for(const section of sections){
+    if(section.getBoundingClientRect().top < 160) current = section.id;
+  }
+  links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+}
+window.addEventListener('scroll', markActive, {passive:true});
+markActive();
+</script>
+</body>
+</html>
